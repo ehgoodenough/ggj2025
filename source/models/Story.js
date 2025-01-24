@@ -21,29 +21,29 @@ export default class Story {
 
         // Generate story text - loop through available content
         while(this.ink.canContinue) {
-            // Read through each line of this page.
-            this.lineNumber += 1
-
             // Get ink to generate the next paragraph
-            const text = this.ink.Continue()
+            const text = this.ink.Continue().trim()
+
+            if(text == "" || text == " ") {
+                continue
+            }
 
             // Add a paragraph element
             this.paragraphs.push({
                 "text": text,
-                "lineNumber": this.lineNumber,
                 "pageNumber": this.pageNumber,
+                "lineNumber": this.lineNumber++,
             })
         }
 
         // Create choices from ink choices
         this.choices = this.ink.currentChoices.map((choice) => {
-            this.lineNumber += 1
-            
             return {
                 "type": "choice",
                 "text": choice.text,
                 "index": choice.index,
-                "lineNumber": this.lineNumber,
+                "pageNumber": this.pageNumber,
+                "lineNumber": this.lineNumber++,
             }
         })
     }
