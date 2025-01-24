@@ -17,13 +17,13 @@ class Story {
         return (
             <div class="Story">
                 {App.story.paragraphs.map((paragraph) => (
-                    <div class="Paragraph">
+                    <div class="Paragraph" isCurrentPage={App.story.pageNumber == paragraph.pageNumber} style={this.getStyle(paragraph)}>
                         {paragraph.text}
                     </div>
                 ))}
                 {App.story.choices.map((choice) => (
-                    <div class="Choice" onClick={this.onClickChoice(choice)}>
-                        {choice.text}
+                    <div class="Choice" onClick={this.onClickChoice(choice)} style={this.getStyle(choice)}>
+                        > {choice.text}
                     </div>
                 ))}
             </div>
@@ -33,6 +33,11 @@ class Story {
         return (event) => {
             event.preventDefault()
             App.story.makeChoice(choice)
+        }
+    }
+    getStyle(paragraph) {
+        return {
+            "animation-delay": 0.5 + (paragraph.lineNumber * 0.25) + "s"
         }
     }
 }

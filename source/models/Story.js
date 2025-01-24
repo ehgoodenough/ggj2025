@@ -4,6 +4,7 @@ export default class Story {
     constructor(storyFile) {
         this.paragraphs = []
         this.choices = []
+        this.pageNumber = 0
 
         this.ink = new Ink.Story(storyFile)
         this.continueStory()
@@ -14,27 +15,36 @@ export default class Story {
         }
     }
     continueStory() {
-        var paragraphIndex = 0
-        var delay = 0.0
+        // Flip to the next "page"
+        this.pageNumber += 1
+        this.lineNumber = 0
 
         // Generate story text - loop through available content
         while(this.ink.canContinue) {
+            // Read through each line of this page.
+            this.lineNumber += 1
+
             // Get ink to generate the next paragraph
             const text = this.ink.Continue()
 
-            // Create paragraph element
-            this.paragraphs.push({"text": text})
+            // Add a paragraph element
+            this.paragraphs.push({
+                "text": text,
+                "lineNumber": this.lineNumber,
+                "pageNumber": this.pageNumber,
+            })
         }
 
-        this.choices = []
-
         // Create choices from ink choices
-        this.ink.currentChoices.forEach((choice) => {
-            this.choices.push({
+        this.choices = this.ink.currentChoices.map((choice) => {
+            this.lineNumber += 1
+            
+            return {
                 "type": "choice",
                 "text": choice.text,
                 "index": choice.index,
-            })
+                "lineNumber": this.lineNumber,
+            }
         })
     }
     makeChoice(choice) {

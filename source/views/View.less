@@ -29,6 +29,18 @@ body {
 .Story {
     .Paragraph {
         margin-bottom: 1em;
+
+        color: @black;
+        transition-property: color;
+        transition-duration: 0.5s;
+        &:not([isCurrentPage]) {
+            color: #AAA;
+        }
+
+        opacity: 0;
+        animation-name: fadein;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
     }
 
     .Choice {
@@ -36,6 +48,11 @@ body {
         &:hover {
             color: @red;
         }
+
+        opacity: 0;
+        animation-name: fadein;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
     }
 }
 
@@ -43,7 +60,7 @@ body {
 // Animations //
 ///////////////
 
-@keyframes fade-in {
+@keyframes fadein {
     0% {opacity: 0;}
     100% {opacity: 1;}
 }
