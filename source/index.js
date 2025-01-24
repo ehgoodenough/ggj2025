@@ -5,13 +5,10 @@ if(__STAGE__ === "DEVELOPMENT") {
 import Preact from "preact"
 import Yaafloop from "yaafloop"
 
-import Mount from "views/Mount.view.js"
-
-import Model from "models/Model.js"
-const model = new Model()
-export default model
+import View from "views/View.js"
+import App from "models/App.js"
 
 let loop = new Yaafloop(function(delta) {
-    model.update(delta)
-    this.mount = Preact.render(<Mount/>, document.body, this.mount)
+    App.update(delta)
+    this.mount = Preact.render(<View/>, document.body, this.mount)
 })

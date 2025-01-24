@@ -18,12 +18,24 @@ body {
     padding: 1em;
 
     color: @black;
-    text-align: center;
     font-family: comfortaa;
     background-color: @white;
 
     img {
         width: 5em;
+    }
+}
+
+.Story {
+    .Paragraph {
+        margin-bottom: 1em;
+    }
+
+    .Choice {
+        cursor: pointer;
+        &:hover {
+            color: @red;
+        }
     }
 }
 

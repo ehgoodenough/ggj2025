@@ -16,6 +16,7 @@
     "zip": "bestzip build.zip builds/web/*"
   },
   "dependencies": {
+    "inkjs": "^2.3.1",
     "keyb": "^1.2.0",
     "preact": "^8.2.7",
     "statgrab": "^1.2.0",
