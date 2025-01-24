@@ -1,0 +1,25 @@
+#frame {
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+    position: fixed;
+    overflow: hidden;
+
+    .aspect-ratio(16, 9);
+}
+
+.aspect-ratio(@width, @height) {
+    @media(min-aspect-ratio: @width ~"/" @height) {
+        font-size: ((@width / @height)* 100vh) / @width;
+        width: (@width / @height) * 100vh;
+        height: 100vh;
+    }
+
+    @media(max-aspect-ratio:@width ~"/" @height) {
+        font-size: ((@height / @width) * 100vw) / @height;
+        height: (@height / @width) * 100vw;
+        width: 100vw;
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "parser": "babel-eslint",
+  "rules": {
+    "camelcase": "warn",
+    "indent": ["warn", 4],
+    "semi": ["warn", "never"],
+    "quotes": ["warn", "double"],
+    "brace-style": ["warn", "1tbs"],
+    "space-before-blocks": "warn"
+  }
+}

@@ -1,0 +1,11 @@
+# Dependencies
+node_modules
+
+# Artifacts
+build.zip
+builds
+
+# Temporary
+.DS_Store
+# *.log
+._*

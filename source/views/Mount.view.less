@@ -1,0 +1,47 @@
+@import "./Styles.view.less";
+
+* {
+    margin: 0px;
+    padding: 0px;
+
+    cursor: default;
+    box-sizing: border-box;
+
+    // -webkit-user-select: none;
+    // -moz-user-select: none;
+    // -ms-user-select: none;
+    // -o-user-select: none;
+    // user-select: none;
+}
+
+body {
+    padding: 1em;
+
+    color: @black;
+    text-align: center;
+    font-family: comfortaa;
+    background-color: @white;
+
+    img {
+        width: 5em;
+    }
+}
+
+/////////////////
+// Animations //
+///////////////
+
+@keyframes fade-in {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+////////////
+// Fonts //
+//////////
+
+@font-face {
+    font-weight: 400;
+    font-family: "comfortaa";
+    src: url("../fonts/comfortaa.ttf") format("truetype");
+}
