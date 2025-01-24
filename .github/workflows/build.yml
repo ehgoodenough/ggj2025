@@ -28,11 +28,11 @@ jobs:
       env:
         FORCE_COLOR: true
     - name: Deploy Artifact
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        CLEAN: true
-        BRANCH: gh-pages
-        FOLDER: builds/web
-        TARGET_FOLDER: ${{ env.GITHUB_REF_SLUG }}
-        COMMIT_MESSAGE: Deploying ${{ github.sha }} to ${{ env.GITHUB_REF_SLUG }}
-        ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+        clean: true
+        branch: gh-pages
+        folder: builds/web
+        target-folder: ${{ env.GITHUB_REF_SLUG }}
+        commit-message: Deploying ${{ github.sha }} to ${{ env.GITHUB_REF_SLUG }}
+        token: ${{ secrets.REPO_ACCESS_TOKEN }}
