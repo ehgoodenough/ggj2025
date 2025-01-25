@@ -29,15 +29,30 @@ export default class OverworldScreen {
                             <area shape="circle" coords="59,59,32" href="javascript:;" onclick={() => App.player.move("center")} alt="NeoQuest Manual"></area>
                         </map>
                     </div>
-                    <p class="Region">
-                        You are in Neopia.
-                    </p>
-                    <p class="PointOfInterest">
-                        You see Balbadore. <a href="/#/dialogue/balbadore">Talk to Balbadore?</a>
-                    </p>
+                    <div class="Interests">
+                        {this.interests}
+                    </div>
                 </div>
             </div>
         )
+    }
+    get interests() {
+        if(App.world == undefined) return
+        if(App.world.terrain == undefined) return
+        const xy = App.player.position.x + "/" + App.player.position.y
+        const terrain = App.world.terrain[xy]
+        if(terrain == undefined) return
+
+        if(terrain.interests instanceof Array) {
+            return terrain.interests.map((interest) => {
+                let onClick = interest.goto ? () => window.location = "#" + interest.goto : undefined
+                return (
+                    <p goto={interest.goto} onClick={onClick}>
+                        {interest.text}
+                    </p>
+                )
+            })
+        }
     }
     get terrain() {
         if(App.world == undefined) return

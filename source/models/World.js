@@ -1,4 +1,5 @@
 import Objdict from "objdict"
+import isPointInPolygon from "point-in-polygon"
 
 const FIRST_TILEGID = 1
 
@@ -15,10 +16,45 @@ export default class World {
         this.width = tilemap.width
         this.height = tilemap.height
         this.terrain = {}
+        this.zones = []
 
         this.tileset = this.parseTileset(tileset)
 
         tilemap.layers.forEach((layer) => {
+            if(layer.type == "objectgroup"
+            && layer.name == "zones") {
+                layer.objects.forEach((object) => {
+                    if(object.visible == false) return
+
+                    if(object.polygon != undefined) {
+                        this.zones.push(this.processPolygonZone({
+                            "key": this.findPropertyValue(object.properties, "key") || object.name,
+                            "goto": this.findPropertyValue(object.properties, "goto"),
+                            "text": this.findPropertyValue(object.properties, "text"),
+
+                            "points": object.polygon.map((point) => {
+                                return {
+                                    "x": ((object.x + point.x) / tilemap.tileheight),
+                                    "y": ((object.y + point.y) / tilemap.tilewidth),
+                                    "key": point.key,
+                                }
+                            })
+                        }))
+                    } else {
+                        this.zones.push(this.processSquareZone({
+                            "key": this.findPropertyValue(object.properties, "key") || object.name,
+                            "goto": this.findPropertyValue(object.properties, "goto"),
+                            "text": this.findPropertyValue(object.properties, "text"),
+
+                            "x": object.x / tilemap.tileheight,
+                            "y": object.y / tilemap.tileheight,
+                            "width": Math.floor(object.width / tilemap.tileheight),
+                            "height": Math.floor(object.height / tilemap.tileheight)
+                        }))
+                    }
+                })
+            }
+
             if(layer.name == "data:collision"
             && layer.type == "tilelayer") {
                 return this.iterateTileLayer(layer, ({tilegid, position}) => {
@@ -65,6 +101,18 @@ export default class World {
                 })
             }
         })
+
+        Object.values(this.terrain).forEach((terrain) => {
+            terrain.interests = terrain.interests || []
+            this.zones.forEach((zone) => {
+                if(this.isInZone(zone, terrain.position)) {
+                    terrain.interests.push({
+                        "text": zone.text,
+                        "goto": zone.goto
+                    })
+                }
+            })
+        })
     }
     parseTileset(tileset) {
         return {
@@ -100,4 +148,120 @@ export default class World {
             return property.value
         }
     }
+    processSquareZone(zone) {
+        const x1 = zone.x
+        const y1 = zone.y
+        const x2 = zone.x + zone.width
+        const y2 = zone.y + zone.height
+        zone.points = [
+            {"x": x1, "y": y1},
+            {"x": x2, "y": y1},
+            {"x": x2, "y": y2},
+            {"x": x1, "y": y2},
+        ]
+        return zone
+    }
+    processPolygonZone(zone) {
+        // We expect all points to be defined in clockwise
+        // order, particularly for rendering the polygon.
+        // If the zone was defined counterclockwise,
+        // go ahead and reverse the order of the points.
+        // We can check if the zone was defined in
+        // counterclockwise order by computing the area.
+        // If its area is negative, it is counterclockwise.
+
+        zone.area = Geometry.area(zone.points)
+        if(zone.area < 0) zone.points.reverse()
+
+        zone.points.forEach((point, index) => {
+            const a = zone.points[(index + 0) % zone.points.length]
+            const b = zone.points[(index + 1) % zone.points.length]
+            const c = zone.points[(index + 2) % zone.points.length]
+            b.internalAngle = Geometry.direction(a, c)
+            b.internalAngle = Geometry.rotate(b.internalAngle, 90)
+        })
+
+        zone.x1 = Math.min(...zone.points.map((point) => point.x))
+        zone.x2 = Math.max(...zone.points.map((point) => point.x))
+        zone.y1 = Math.min(...zone.points.map((point) => point.y))
+        zone.y2 = Math.max(...zone.points.map((point) => point.y))
+        zone.x = zone.x1
+        zone.y = zone.y1
+        zone.width = zone.x2 - zone.x1
+        zone.height = zone.y2 - zone.y1
+        zone.center = {
+            "x": zone.x + ((zone.x2 - zone.x1) / 2) + 0.5,
+            "y": zone.y + ((zone.y2 - zone.y1) / 2) + 0.5
+        }
+
+        return zone
+    }
+    isInZone(zone, position) {
+        if(zone.points != undefined) {
+            return isPointInPolygon([position.x, position.y], zone.points.map((point) => [point.x, point.y]))
+        }
+        return position != undefined
+            && position.x >= zone.x
+            && position.x < zone.x + zone.width
+            && position.y >= zone.y
+            && position.y < zone.y + zone.height
+    }
+}
+
+
+const Geometry = {}
+Geometry.normalize = function(a) {
+    const x = a.x / Geometry.length(a)
+    const y = a.y / Geometry.length(a)
+    return { "x": x, "y": y }
+}
+Geometry.length = function(a) {
+    return Math.sqrt(a.x * a.x + a.y * a.y)
+}
+Geometry.vector = function(a, b) {
+    a = Geometry.default(a)
+    b = Geometry.default(b)
+    return {
+        "x": Math.sign(a.x - b.x),
+        "y": Math.sign(a.y - b.y),
+        "z": Math.sign(a.z - b.z),
+    }
+}
+
+Geometry.rotate = function(p, degrees) {
+    const radians = degrees * (Math.PI / 180)
+    return {
+        "x": (p.x * Math.cos(radians)) - (p.y * Math.sin(radians)),
+        "y": (p.x * Math.sin(radians)) + (p.y * Math.cos(radians)),
+        "z": p.z,
+    }
+}
+Geometry.default = function(p) {
+    if(p == undefined) {
+        return {"x": 0, "y": 0, "z": 0}
+    }
+    if(isNaN(p) == false) {
+        return {
+            "x": p,
+            "y": p,
+            "z": p,
+        }
+    }
+    return {
+        "x": p.x || 0,
+        "y": p.y || 0,
+        "z": p.z || 0,
+    }
+}
+Geometry.area = function(points) {
+    let area = 0
+    for (var i = 0; i < points.length; i++) {
+        const j = (i + 1) % points.length
+        area += points[i].x * points[j].y
+        area -= points[j].x * points[i].y
+    }
+    return area / 2
+}
+Geometry.direction = function(a, b) {
+    return Geometry.normalize(Geometry.vector(a, b))
 }
