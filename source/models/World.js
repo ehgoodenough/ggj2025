@@ -58,6 +58,10 @@ export default class World {
                     if(this.findPropertyValue(tile.properties, "goto") != undefined) {
                         this.terrain[position.xy].goto = this.findPropertyValue(tile.properties, "goto")
                     }
+
+                    if(this.findPropertyValue(tile.properties, "color") != undefined) {
+                        this.terrain[position.xy].color = this.findPropertyValue(tile.properties, "color")
+                    }
                 })
             }
         })

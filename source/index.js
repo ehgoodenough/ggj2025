@@ -9,5 +9,6 @@ import View from "views/View.js"
 import App from "models/App.js"
 
 let loop = new Yaafloop(function(delta) {
+    App.update(delta)
     this.mount = Preact.render(<View/>, document.body, this.mount)
 })

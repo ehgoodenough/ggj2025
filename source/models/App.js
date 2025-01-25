@@ -19,6 +19,13 @@ export default new class App {
             "tileset": tilesetFile,
         })
 
+        this.player = {
+            "position": {
+                "x": 5,
+                "y": 9,
+            }
+        }
+
         this.navigation = new NavigationRouter({
             "defaultPath": "/splash"
         })
@@ -55,6 +62,24 @@ export default new class App {
 
         this.navigation.onNavigationError = (error) => {
             this.navigation.state = {"screen": "NavigationErrorScreen", "error": error}
+        }
+    }
+    update() {
+        if(Keyb.wasJustPressed("A")
+        || Keyb.wasJustPressed("<left>")) {
+            this.player.position.x -= 1
+        }
+        if(Keyb.wasJustPressed("D")
+        || Keyb.wasJustPressed("<right>")) {
+            this.player.position.x += 1
+        }
+        if(Keyb.wasJustPressed("W")
+        || Keyb.wasJustPressed("<up>")) {
+            this.player.position.y -= 1
+        }
+        if(Keyb.wasJustPressed("S")
+        || Keyb.wasJustPressed("<down>")) {
+            this.player.position.y += 1
         }
     }
 }

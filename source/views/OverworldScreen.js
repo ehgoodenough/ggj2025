@@ -9,6 +9,9 @@ export default class OverworldScreen {
             <div class="OverworldScreen">
                 <div class="World">
                     {this.terrain}
+                    <div class="Adventurer" style={{
+                        "background-color": "red",
+                    }}/>
                 </div>
             </div>
         )
@@ -17,15 +20,16 @@ export default class OverworldScreen {
         if(App.world == undefined) return
         if(App.world.terrain == undefined) return
         const tiles = []
-        for(let x = 0; x < 7; x += 1) {
-            for(let y = 0; y < 7; y += 1) {
-                if(App.world.terrain[x + "/" + y] == undefined) continue
-                const terrain = App.world.terrain[x + "/" + y]
+        for(let x = -3; x < 3; x += 1) {
+            for(let y = -3; y < 3; y += 1) {
+                const xy = (App.player.position.x + x) + "/" + (App.player.position.y + y)
+                const terrain = App.world.terrain[xy]
+                if(terrain == undefined) continue
                 tiles.push(
                     <div class="TerrainTile" style ={{
-                        "top": x + "em",
-                        "left": y + "em",
-                        "background-color": "orange",
+                        "top": (y + 3) + "em",
+                        "left": (x + 3) + "em",
+                        "background-color": "#" + terrain.color,
                     }}/>
                 )
             }
