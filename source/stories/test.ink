@@ -1,5 +1,5 @@
 
--> start
+-> splash
 
 
 === balbadore ===
@@ -14,6 +14,6 @@ Hello
 -> END
 
 
-=== start ===
+=== splash ===
 Hello World. Die in my world.
 -> END

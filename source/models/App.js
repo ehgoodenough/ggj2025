@@ -12,7 +12,11 @@ export default new class App {
         window.app = this
 
         this.navigation = new NavigationRouter({
-            "defaultPath": "/home"
+            "defaultPath": "/splash"
+        })
+
+        this.navigation.on("/splash", (request) => {
+            this.navigation.state = {"screen": "SplashScreen"}
         })
 
         this.navigation.on("/dialogue/:dialogueKey", (request) => {
