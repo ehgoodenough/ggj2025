@@ -1,11 +1,13 @@
 
 -> start
 
-
 === balbadore ===
 pokaspokdappaoskdpasodk
+Hello World.
 Hello
 + Go to cave
+    popup(what)
+    popup(what????)
     goto(/cave)
     ->END
 + Go to overworld
@@ -15,5 +17,4 @@ Hello
 
 
 === start ===
-Hello World. Die in my world.
 -> END

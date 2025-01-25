@@ -4,7 +4,8 @@ import Player from "models/Player.js"
 import NavigationRouter from "models/NavigationRouter.js"
 import NavigationError from "./NavigationError.js"
 
-import storyFile from "data/Neoquest.ink.json"
+// import storyFile from "data/Neoquest.ink.json"
+import storyFile from "data/test.ink.json"
 import tilemapFile from "data/world.tiled.json"
 import tilesetFile from "data/tiles/heroes.tileset.json"
 
@@ -71,7 +72,7 @@ export default new class App {
             this.navigation.state = {"screen": "Cave"}
         })
 
-        this.navigation.on("/flasherror", (request) => {
+        this.navigation.on("/flash", (request) => {
             // Audio.trigger("Music")
             this.navigation.state = {"screen": "FlashError"}
         })

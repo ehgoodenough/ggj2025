@@ -39,9 +39,19 @@ export default class Story {
                 continue
             }
             if(text.startsWith("goto(")) {
-                const origin = text.substring(5, text.length - 1)
-                window.location = "/#" + origin
+                const parameter = text.substring(5, text.length - 1)
+                if(parameter.startsWith("https://")) {
+                    window.location = parameter
+                } else {
+                    window.location = "/#" + parameter
+                }
                 return
+            }
+
+            if(text.startsWith("popup(")) {
+                const parameter = text.substring(6, text.length - 1)
+                window.alert(parameter)
+                continue
             }
 
             // Add a paragraph element
