@@ -80,7 +80,9 @@ King Deltador says, “A great evil threatens my domain. It must be stopped soon
             Kauvara says, “Oh, it’s nothing, really, I’m happy to help! You’re lucky I was around today. There used to be another path into my pasture, but ever since the volcano erupted it’s much too dangerous to go that way.”
                 ****“Wait, volcano?”
                 Kauvara says, “I told you the pasture was surrounded by mountains, silly! There’s no need to worry, though, because all the lava has luckily been flowing the other way, into the sea. The pasture is perfectly safe. Now shoo, you’re blocking my sunlight.”
-                ->loop
+                    *****Return to overworld
+                    goto(/overworld)
+                    ->loop
     *"Why are you going there tonight?”[] you ask
     Kauvara says, “Oh, just to chat. A court wizard must be in close contact with her king, you know. And Delt is so easy to talk to, especially late at night when he’s set down the mantle of kingship for a bit.”
         **[“Of course.”]
