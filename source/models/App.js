@@ -3,11 +3,14 @@ import Keyb from "keyb"
 import Story from "models/Story.js"
 import NavigationRouter from "models/NavigationRouter.js"
 import NavigationError from "./NavigationError.js"
+
 import storyFile from "data/test.ink.json"
+import mapFile from "data/map.tiled.json"
 
 export default new class App {
     constructor() {
         this.story = new Story(storyFile)
+        this.map = new Map(mapFile)
 
         window.app = this
 
@@ -33,12 +36,10 @@ export default new class App {
                 }
             }
 
-            // Audio.trigger("Music")
             this.navigation.state = {"screen": "DialogueScreen", "dialogueKey": dialogueKey}
         })
 
         this.navigation.on("/overworld", (request) => {
-            // Audio.trigger("Music")
             this.navigation.state = {"screen": "OverworldScreen"}
         })
 
@@ -50,8 +51,5 @@ export default new class App {
         this.navigation.onNavigationError = (error) => {
             this.navigation.state = {"screen": "NavigationErrorScreen", "error": error}
         }
-    }
-    update() {
-        // this gets run every frame~
     }
 }
