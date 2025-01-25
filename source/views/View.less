@@ -33,37 +33,6 @@ body {
     }
 }
 
-.Story {
-    .Paragraph {
-        display: block;
-        margin-bottom: 1em;
-
-        color: @black;
-        transition-property: color;
-        transition-duration: 0s;
-        &:not([isCurrentPage]) {
-            color: #AAA;
-        }
-
-        opacity: 0;
-        animation-name: fadein;
-        animation-duration: 0.5s;
-        animation-fill-mode: forwards;
-    }
-
-    .Choice {
-        cursor: pointer;
-        &:hover {
-            color: @red;
-        }
-
-        opacity: 0;
-        animation-name: fadein;
-        animation-duration: 0.5s;
-        animation-fill-mode: forwards;
-    }
-}
-
 /////////////////
 // Animations //
 ///////////////

@@ -16,7 +16,7 @@ export default class View {
         if(Screen != undefined) return <Screen/>
         return (
             <div class="MissingScreen">
-                You should not be here!!
+                Uh oh!! Something went wrong~ Error 500
             </div>
         )
     }

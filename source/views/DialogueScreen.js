@@ -1,12 +1,13 @@
 import Preact from "preact"
 import App from "models/App.js"
 
-// import "views/DialogueScreen.less"
+import "views/DialogueScreen.less"
 
 export default class DialogueScreen {
     render() {
         return (
             <div class="DialogueScreen">
+                <title>Speaking</title>
                 <Story story={App.story}/>
             </div>
         )
