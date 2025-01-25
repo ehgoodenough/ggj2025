@@ -11,13 +11,13 @@ import tilesetFile from "data/tiles/heroes.tileset.json" // vmenezio
 
 export default new class App {
     constructor() {
+        window.App = this
+
         this.story = new Story(storyFile)
-        this.map = new World({
+        this.world = new World({
             "tilemap": tilemapFile,
             "tileset": tilesetFile,
         })
-
-        window.app = this
 
         this.navigation = new NavigationRouter({
             "defaultPath": "/splash"

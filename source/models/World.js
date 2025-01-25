@@ -24,9 +24,9 @@ export default class World {
                 return this.iterateTileLayer(layer, ({tilegid, position}) => {
                     tilegid -= FIRST_TILEGID
                     if(tilegid > -1) {
-                        position.xy = position.x + "x" + position.y
+                        position.xy = position.x + "/" + position.y
                         this.terrain[position.xy] = this.terrain[position.xy] || {"position": {...position}}
-                        this.terrain[position.x + "x" + position.y].hasCollision = true
+                        this.terrain[position.xy].hasCollision = true
                     }
                 })
             }
@@ -37,7 +37,7 @@ export default class World {
                     tilegid -= FIRST_TILEGID
                     const tile = this.tileset.tiles[tilegid] || {}
 
-                    position.xy = position.x + "x" + position.y
+                    position.xy = position.x + "/" + position.y
                     this.terrain[position.xy] = this.terrain[position.xy] || {
                         "position": {...position},
                     }
