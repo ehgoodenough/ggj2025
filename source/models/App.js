@@ -35,6 +35,11 @@ export default new class App {
             this.navigation.state = {"screen": "OverworldScreen"}
         })
 
+        this.navigation.on("/cave", (request) => {
+            // Audio.trigger("Music")
+            this.navigation.state = {"screen": "Cave"}
+        })
+
         this.navigation.onNavigationError = (error) => {
             this.navigation.state = {"screen": "NavigationErrorScreen", "error": error}
         }
