@@ -47,6 +47,11 @@ export default new class App {
             this.navigation.state = {"screen": "Cave"}
         })
 
+        this.navigation.on("/flasherror", (request) => {
+            // Audio.trigger("Music")
+            this.navigation.state = {"screen": "FlashError"}
+        })
+
         this.navigation.onNavigationError = (error) => {
             this.navigation.state = {"screen": "NavigationErrorScreen", "error": error}
         }
