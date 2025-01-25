@@ -3,7 +3,7 @@ import Keyb from "keyb"
 import Story from "models/Story.js"
 import NavigationRouter from "models/NavigationRouter.js"
 import NavigationError from "./NavigationError.js"
-import storyFile from "stories/example.ink.json"
+import storyFile from "stories/test.ink.json"
 
 export default new class App {
     constructor() {
@@ -17,6 +17,9 @@ export default new class App {
 
         this.navigation.on("/dialogue/:dialogueKey", (request) => {
             const dialogueKey = request.wildcards.dialogueKey
+
+            this.story.paragraphs = []
+            this.story.choices = []
 
             try {
                 this.story.startStory(dialogueKey)

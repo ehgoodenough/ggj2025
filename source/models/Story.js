@@ -38,6 +38,11 @@ export default class Story {
             if(text == "" || text == " ") {
                 continue
             }
+            if(text.startsWith("goto(")) {
+                const origin = text.substring(5, text.length - 1)
+                window.location = "/#" + origin
+                return
+            }
 
             // Add a paragraph element
             this.paragraphs.push({
