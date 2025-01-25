@@ -3,7 +3,7 @@ import Keyb from "keyb"
 import Story from "models/Story.js"
 import NavigationRouter from "models/NavigationRouter.js"
 import NavigationError from "./NavigationError.js"
-import storyFile from "data/test.ink.json"
+import storyFile from "data/Neoquest.ink.json"
 
 export default new class App {
     constructor() {
