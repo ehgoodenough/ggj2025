@@ -1,16 +1,21 @@
 import Keyb from "keyb"
 
 import Story from "models/Story.js"
+import World from "models/World.js"
 import NavigationRouter from "models/NavigationRouter.js"
 import NavigationError from "./NavigationError.js"
 
 import storyFile from "data/test.ink.json"
-import mapFile from "data/map.tiled.json"
+import tilemapFile from "data/world.tiled.json"
+import tilesetFile from "data/tiles/heroes.tileset.json" // vmenezio
 
 export default new class App {
     constructor() {
         this.story = new Story(storyFile)
-        this.map = new Map(mapFile)
+        this.map = new World({
+            "tilemap": tilemapFile,
+            "tileset": tilesetFile,
+        })
 
         window.app = this
 
