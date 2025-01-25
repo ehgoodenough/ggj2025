@@ -1,7 +1,6 @@
-import Keyb from "keyb"
-
 import Story from "models/Story.js"
 import World from "models/World.js"
+import Player from "models/Player.js"
 import NavigationRouter from "models/NavigationRouter.js"
 import NavigationError from "./NavigationError.js"
 
@@ -21,12 +20,12 @@ export default new class App {
             "tileset": tilesetFile,
         })
 
-        this.player = {
+        this.player = new Player({
             "position": {
                 "x": 5,
                 "y": 9,
             }
-        }
+        })
 
         this.navigation = new NavigationRouter({
             "defaultPath": "/splash"
@@ -80,28 +79,6 @@ export default new class App {
         }
     }
     update(delta) {
-        if(Keyb.wasJustPressed("A", delta.ms)
-        || Keyb.wasJustPressed("<left>", delta.ms)) {
-            this.player.position.x -= 1
-            this.setAddressToPosition()
-        }
-        if(Keyb.wasJustPressed("D", delta.ms)
-        || Keyb.wasJustPressed("<right>", delta.ms)) {
-            this.player.position.x += 1
-            this.setAddressToPosition()
-        }
-        if(Keyb.wasJustPressed("W", delta.ms)
-        || Keyb.wasJustPressed("<up>", delta.ms)) {
-            this.player.position.y -= 1
-            this.setAddressToPosition()
-        }
-        if(Keyb.wasJustPressed("S", delta.ms)
-        || Keyb.wasJustPressed("<down>", delta.ms)) {
-            this.player.position.y += 1
-            this.setAddressToPosition()
-        }
-    }
-    setAddressToPosition() {
-        window.location = "/#/overworld/" + this.player.position.x + "/" + this.player.position.y
+        this.player.update(delta)
     }
 }
