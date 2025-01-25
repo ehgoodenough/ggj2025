@@ -14,6 +14,17 @@ export default class Story {
             this.time += delta.s
         }
     }
+    startStory(dialogueKey) {
+        try {
+            this.ink.ChoosePathString(dialogueKey)
+            this.continueStory()
+            return
+        } catch(error) {
+            if(error.name != "StoryException") console.error(error)
+            throw "not found"
+            return []
+        }
+    }
     continueStory() {
         // Flip to the next "page"
         this.pageNumber += 1
