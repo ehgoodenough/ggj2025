@@ -5,11 +5,41 @@
     align-items: center;
     justify-content: center;
 
+    .Controls {
+        width: 12em;
+        padding: 1em;
+        display: flex;
+        align-items: top;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        p {
+            margin: 1em 0em;
+        }
+
+        .Compass {
+            img {
+                width: 120px;
+                height: 120px;
+                display: block;
+            }
+
+            map {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    }
+
     .World {
         width: 7em;
         height: 7em;
-        font-size: 2em;
+        font-size: 3em;
         position: relative;
+
+        background-color: hotpink;
 
         .Adventurer {
             top: 3em;

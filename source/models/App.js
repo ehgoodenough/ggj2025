@@ -9,6 +9,8 @@ import storyFile from "data/test.ink.json"
 import tilemapFile from "data/world.tiled.json"
 import tilesetFile from "data/tiles/heroes.tileset.json" // vmenezio
 
+const STARTING_POSITION = {"x": 7, "y": 5}
+
 export default new class App {
     constructor() {
         window.App = this
@@ -55,6 +57,19 @@ export default new class App {
             this.navigation.state = {"screen": "OverworldScreen"}
         })
 
+        this.navigation.on("/overworld/:x/:y", (request) => {
+            this.player.position.x = Number.parseInt(request.wildcards.x)
+            this.player.position.y = Number.parseInt(request.wildcards.y)
+            if(this.player.position.x < 0
+            || this.player.position.y < 0
+            || this.player.position.x >= this.world.width
+            || this.player.position.y >= this.world.height) {
+                this.player.position = {...STARTING_POSITION}
+                this.setAddressToPosition()
+            }
+            this.navigation.state = {"screen": "OverworldScreen"}
+        })
+
         this.navigation.on("/cave", (request) => {
             // Audio.trigger("Music")
             this.navigation.state = {"screen": "Cave"}
@@ -64,22 +79,29 @@ export default new class App {
             this.navigation.state = {"screen": "NavigationErrorScreen", "error": error}
         }
     }
-    update() {
-        if(Keyb.wasJustPressed("A")
-        || Keyb.wasJustPressed("<left>")) {
+    update(delta) {
+        if(Keyb.wasJustPressed("A", delta.ms)
+        || Keyb.wasJustPressed("<left>", delta.ms)) {
             this.player.position.x -= 1
+            this.setAddressToPosition()
         }
-        if(Keyb.wasJustPressed("D")
-        || Keyb.wasJustPressed("<right>")) {
+        if(Keyb.wasJustPressed("D", delta.ms)
+        || Keyb.wasJustPressed("<right>", delta.ms)) {
             this.player.position.x += 1
+            this.setAddressToPosition()
         }
-        if(Keyb.wasJustPressed("W")
-        || Keyb.wasJustPressed("<up>")) {
+        if(Keyb.wasJustPressed("W", delta.ms)
+        || Keyb.wasJustPressed("<up>", delta.ms)) {
             this.player.position.y -= 1
+            this.setAddressToPosition()
         }
-        if(Keyb.wasJustPressed("S")
-        || Keyb.wasJustPressed("<down>")) {
+        if(Keyb.wasJustPressed("S", delta.ms)
+        || Keyb.wasJustPressed("<down>", delta.ms)) {
             this.player.position.y += 1
+            this.setAddressToPosition()
         }
+    }
+    setAddressToPosition() {
+        window.location = "/#/overworld/" + this.player.position.x + "/" + this.player.position.y
     }
 }
