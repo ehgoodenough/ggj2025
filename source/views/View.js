@@ -6,9 +6,9 @@ import DialogueScreen from "views/DialogueScreen.js"
 import OverworldScreen from "views/OverworldScreen.js"
 import NavigationErrorScreen from "views/NavigationErrorScreen.js"
 import SplashScreen from "views/SplashScreen.js"
-import Cave from "views/Cave.js"
+import CaveScreen from "views/CaveScreen.js"
 import FlashError from "views/FlashError.js"
-const Screens = {DialogueScreen, OverworldScreen, NavigationErrorScreen, Cave, SplashScreen, FlashError}
+const Screens = {DialogueScreen, OverworldScreen, NavigationErrorScreen, CaveScreen, SplashScreen, FlashError}
 
 export default class View {
     render() {

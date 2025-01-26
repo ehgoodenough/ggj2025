@@ -1,14 +1,14 @@
 import Preact from "preact"
 import App from "models/App.js"
 
-import "views/Cave.less"
+import "views/CaveScreen.less"
 
 export default class Cave {
     render() {
         return (
-            <div class = "Cave">
-                <div class = "Echo">
-                Theres literally NOTHING here, use the back button!
+            <div class="CaveScreen">
+                <div class="Echo">
+                    There's nothing in here;<br/>use the back button!
                 </div>
             </div>
         )

@@ -79,7 +79,7 @@ export default new class App {
 
         this.navigation.on("/cave", (request) => {
             // Audio.trigger("Music")
-            this.navigation.state = {"screen": "Cave"}
+            this.navigation.state = {"screen": "CaveScreen"}
         })
 
         this.navigation.on("/flash", (request) => {

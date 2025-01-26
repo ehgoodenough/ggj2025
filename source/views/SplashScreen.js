@@ -5,8 +5,7 @@ export default class SplashScreen {
     render() {
         return (
             <div class = "SplashScreen">
-                You are now entering a space between space and space.
-                <a href="/#/overworld/29/15">Enter the world of Neopia~</a>
+                You are the LANDS OF NEOQUEST 6. Prepare thyself. <a href="/#/overworld/29/15">Enter the world of Neopia~</a>
             </div>
         )
     }
