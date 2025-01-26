@@ -26,7 +26,7 @@ export default class FlashError {
                     </div>
                     <div class = "ErrorText">
                         <p>Critical error! Adobe Flash no longer exists! <br />
-                            <div class="StartButton" onClick={() => window.location.hash = "overworld"} onMouseOver={setWink} onMouseLeave={setSad}>Send crash report.</div>
+                            <div class="StartButton" onClick={() => window.location.hash = "/overworld"} onMouseOver={setWink} onMouseLeave={setSad}>Send crash report.</div>
                         </p>
                     </div>
                 </div>

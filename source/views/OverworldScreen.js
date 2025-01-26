@@ -122,7 +122,7 @@ export default class OverworldScreen {
                     App.navigation.state.interests.push(<i>{monologue[0]}</i>)
                     monologue.shift()
                 }
-                let onClick = interest.link ? () => window.location = "#" + interest.link : undefined
+                let onClick = interest.link ? () => window.location.hash = interest.link : undefined
                 return (
                     <p class="Interest" link={interest.link} onClick={onClick}>
                         {interest.text == "SPECIAL" ? "" : interest.text}

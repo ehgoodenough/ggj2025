@@ -11,6 +11,6 @@ export default class SplashScreen {
     }
     onClick() {
         App.player.name = window.prompt("What is your name, brave adventurer?")
-        window.location = "#/overworld/29/15"
+        window.location.hash = "/overworld/29/15"
     }
 }

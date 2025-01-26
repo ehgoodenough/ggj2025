@@ -34,7 +34,7 @@ export default class Player {
         }
         if(App.world.terrain[xy] != undefined
         && App.world.terrain[xy].autolink != undefined) {
-            window.location = "#/dialogue/" + App.world.terrain[xy].autolink
+            window.location.hash = "/dialogue/" + App.world.terrain[xy].autolink
             return
         }
 
@@ -59,7 +59,7 @@ export default class Player {
         this.setAddressToPosition()
     }
     setAddressToPosition() {
-        window.location = "/#/overworld/" + this.position.x + "/" + this.position.y
+        window.location.hash = "/overworld/" + this.position.x + "/" + this.position.y
     }
     update(delta) {
         if(Keyb.wasJustPressed("A", delta.ms)

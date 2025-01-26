@@ -48,9 +48,9 @@ export default class Story {
             if(text.startsWith("goto(")) {
                 const parameter = text.substring(5, text.length - 1)
                 if(parameter.startsWith("www.")) {
-                    window.location = "https://" + parameter
+                    window.location.hash = "https://" + parameter
                 } else {
-                    window.location = "/#" + parameter
+                    window.location.hash = parameter
                 }
                 continue
             }
