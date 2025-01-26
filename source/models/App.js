@@ -22,7 +22,7 @@ export default new class App {
         })
 
         this.player = new Player({
-            "position": {"x": 7, "y": 5}
+            "position": STARTING_POSITION
         })
 
         this.navigation = new NavigationRouter({

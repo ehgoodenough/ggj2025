@@ -21,6 +21,7 @@ const TILE_IMAGES = {
     "109": require("data/tiles/neoquest/castle_pillar.gif"),
     "110": require("data/tiles/neoquest/castle_walls.gif"),
     "111": require("data/tiles/neoquest/sword.gif"),
+    "112": require("data/tiles/neoquest/down_arrow.gif"),
 }
 
 export default class World {
