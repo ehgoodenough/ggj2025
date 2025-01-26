@@ -8,7 +8,7 @@
  "margin":0,
  "name":"heroes.tileset",
  "spacing":0,
- "tilecount":108,
+ "tilecount":109,
  "tiledversion":"1.8.6",
  "tileheight":48,
  "tiles":[
@@ -1447,6 +1447,12 @@
         {
          "id":113,
          "image":"neoquest\/door.jpg",
+         "imageheight":40,
+         "imagewidth":40
+        }, 
+        {
+         "id":114,
+         "image":"neoquest\/glitch2.gif",
          "imageheight":40,
          "imagewidth":40
         }],

@@ -317,6 +317,13 @@ goto(/overworld/48/30)
 goto(/overworld/46/27)
 ->DONE
 
+=== treasure ===
+image(kass)
+title(Lord Kass, Rightful Ruler of the Neopian Throne)
+You take the gold without Kass noticing.
+    +Return to Overworld
+    goto(/overworld)
+->DONE
 === door ===
 +{not inventory_key} -> door_nokey
 +{inventory_key} -> door_key

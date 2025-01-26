@@ -8,6 +8,7 @@ const PORTRAITS = {
     "partywizard": require("images/wiz-full.png"),
     "kass": require("images/imp-full.png"),
     "kauvara": require("images/cow-full.png"),
+    "boatseller": require("images/boatseller-full.png"),
 }
 
 export default class DialogueScreen {
