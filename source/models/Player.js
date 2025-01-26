@@ -27,6 +27,10 @@ export default class Player {
             return
         }
 
+        if(xy == "48/29"
+        && App.story.ink.variablesState.$("inventory_boat") == false) {
+            return
+        }
 
         this.position.x += direction.x
         this.position.y += direction.y
