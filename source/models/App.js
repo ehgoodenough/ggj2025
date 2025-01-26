@@ -81,6 +81,13 @@ export default new class App {
                 this.player.setAddressToPosition()
                 this.blink = Date.now()
             }
+
+            if(this.player.position.y <= 18 && this.player.position.x >= 36
+            && this.story.ink.variablesState.$("inventory_boat") != true) {
+                this.player.position = {...STARTING_POSITION}
+                this.player.setAddressToPosition()
+                this.blink = Date.now()
+            }
         })
 
         this.navigation.on("/cave", (request) => {
