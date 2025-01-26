@@ -8,7 +8,7 @@
  "margin":0,
  "name":"heroes.tileset",
  "spacing":0,
- "tilecount":112,
+ "tilecount":115,
  "tiledversion":"1.8.6",
  "tileheight":48,
  "tiles":[
@@ -1471,6 +1471,24 @@
         {
          "id":117,
          "image":"neoquest\/castle_floor.jpg",
+         "imageheight":40,
+         "imagewidth":40
+        }, 
+        {
+         "id":118,
+         "image":"neoquest\/spike1.jpg",
+         "imageheight":40,
+         "imagewidth":40
+        }, 
+        {
+         "id":119,
+         "image":"neoquest\/spike2.jpg",
+         "imageheight":40,
+         "imagewidth":40
+        }, 
+        {
+         "id":120,
+         "image":"neoquest\/spike3.jpg",
          "imageheight":40,
          "imagewidth":40
         }],

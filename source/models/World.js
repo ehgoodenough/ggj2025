@@ -27,6 +27,9 @@ const TILE_IMAGES = {
     "115": require("data/tiles/neoquest/gold.jpg"),
     "116": require("data/tiles/neoquest/gold2.jpg"),
     "117": require("data/tiles/neoquest/castle_floor.jpg"),
+    "118": require("data/tiles/neoquest/spike1.jpg"),
+    "119": require("data/tiles/neoquest/spike2.jpg"),
+    "120": require("data/tiles/neoquest/spike3.jpg"),
 }
 
 export default class World {
