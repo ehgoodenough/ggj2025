@@ -7,6 +7,8 @@ VAR inventory_boat = false
 VAR inventory_coupon = false
 
 === deltador ===
+image(deltador)
+title(Deltador, King of the Domain)
 *{not tutorial_discussion} -> tutorial_discussion
 +{inventory_cloak} -> dialogue_cloak
 + -> dialogue_start
@@ -170,8 +172,10 @@ King Deltador says, “Kauvara should be somewhere just outside the city, to the
 ->END
 
 === partywizard1 ===
+image(partywizrd)
+title(Party Wizard)
 *{not partywizard1_first} -> partywizard1_first
-*{partywizard1_first} -> dialogue_start
++{partywizard1_first} -> dialogue_start
 =partywizard1_first
 Party Wizard says, “Yeah, it’s been like that for a bit. Totally impassable. Unless you know your way around this website like I do.”
     -(first_convo)
@@ -186,7 +190,7 @@ Party Wizard says, “Yeah, it’s been like that for a bit. Totally impassable.
         
 =dialogue_start
 +{dialogue_door} -> dialogue_teleport
-+{door_conversation} -> dialogue_door
++{door} -> dialogue_door
 +{not inventory_key} ->dialogue_nokey
 +{inventory_key} ->dialogue_key
 ->DONE
@@ -208,8 +212,8 @@ Party Wizard says, “Yeah, that one was a pretty dope flash animation of, like,
 Party Wizard says, “[Jargon about how to use the url bar pls help]”
     +“That feels like cheating, but thanks, I guess.”[] you say
     *“Is that how you got here?”[] you ask
-    -Party Wizard says, “Work smarter, not harder. Now go forth, conquer, et cetera et cetera. Come find me again if you ever need advice.”
-    *“Thank you.”
+-Party Wizard says, “Work smarter, not harder. Now go forth, conquer, et cetera et cetera. Come find me again if you ever need advice.”
+    +“Thank you.”
     -goto(/overworld)
 ->DONE
 =dialogue_key
@@ -219,19 +223,118 @@ Party Wizard says, “[Jargon about how to use the url bar pls help]”
 ->DONE
 -> END
 
+=== partywizard2 ===
+Party Wizard says, “That’s the edge of the tutorial map. You’ll have to get that sword if you want to go any further that way.”
+    +“Okay.”[] you say
+    *“Can I take your signpost?”[] you ask
+        --Party Wizard says, “No! I need this one. Go find your own.”
+        **“It’s not nailed down.”[] you say
+        --Party Wizard says, “You got me there. Alright, you win. I have spares anyway.”
+        **"Thanks"[] you say
+        ~ inventory_sign = true
+    -goto(/overworld)
+->DONE
+->END
+
+=== partywizard3 ===
+Party Wizard says, “This place used to look so freaking cool. Some huge battle or something, idk. Lots of skeletons and broken weapons and stuff. Now all the image files are borked and those tiles are glitched out. But on the upside, that’s how I learned to teleport, so I guess it’s not all bad.”
+    +“I guess.”[] you say
+    -goto(/overworld)
+->DONE
+->END
+
 === boatseller ===
+image(boatseller)
+title(Boat Seller)
+*{not boatseller_first} -> boatseller_first
++{boatseller_first} -> dialogue_start
+=boatseller_first
+The Boat Seller says, “How did you get in here? Kass is guarding the throne room. He’s been in such a territorial mood lately and scared off all my customers. I wasn’t expecting to see anyone in my shop ever again.”
+    *“I snuck past him.”[] you say
+        The Boat Seller says, “I suppose that isn’t hard to do. He gets very focused on his external monologues. Sometimes I have to shake him to snap him out of it, poor sweet thing. But you’ll have to leave through the back entrance here. He’ll be furious with himself if he knows he let an adventurer get by him.”
+        ++“How am I supposed to leave through there?”[] you ask
+    *“What do you sell?”[] you ask
+    -(boat_intro){The Boat Seller says, “I sell boats. Lava boats, to be precise. You see that lava flow? There’s only one way to traverse it, and I’ve cornered the market. Only problem is, since I’ve had so few customers lately I’m a bit overstocked, so I’ll give you one for free."| I'm sure business will take off any day now.”}
+    *“You run a shop out of the back of a fortress?”[] you ask
+    The Boat Seller says, “Do you see any other entrances to the lava flow around here? Location is key.->boat_intro
+    *“You said Kass scared off all your customers?”[] you ask
+    The Boat Seller says, “Well, don’t tell him I said this, but he doesn’t have the most natural customer service manner, you see. It’s been a bit of a struggle getting him to stop immolating prospective buyers. And then of course there was that siege on the Keep a while back, which is of course terrible PR. Kass won’t let me clean up the skeletons and scorch marks out front, either. Don’t get me wrong, I wouldn’t change who he is for the world, but it does make being a businessman difficult. Then again, so does giving out freebies.->boat_intro
+    *“You’ll give me a boat for free?”[] you ask
+    -The Boat Seller says, “Ordinarily I wouldn’t just throw away merchandise like that, but quite frankly the only way out of this Keep without going back past Kass is through the lava, and I’d prefer the lost revenue to dealing with one of his moods.”
+    *“Do you like working for Kass?”[] you ask
+    -The Boat Seller says, “Oh, you think you’re a comedian, I get it. We’re equal partners in this relationship, thank you very much.”
+    *“What?”[] you ask
+    -The Boat Seller says, “Take your free boat before I change my mind.”
+    *“Okay, give me the boat,”[] you say
+    -The Boat Seller says, “Unbelievably ungrateful. Fine. [advice for boating minigame].”
+    *Return to Overworld
+    ~ inventory_boat = true
+    goto(/overworld)
+->DONE
+=dialogue_start
+The Boat Seller says, “Hurry on out of here before Kass sees you! I’m not letting you ruin the lovely dinner I have planned for us.”
++{inventory_boat} "What do I do with this boat?" -> dialogue_boat
++{not inventory_boat} "Can I have a new lava boat?" -> dialogue_noboat
+*{inventory_coupon} "I have this coupon for a water boat. Can I have one of those instead?" -> dialogue_coupon
+->DONE
+=dialogue_boat
+The Boat Seller says, “[advice for boating minigame]”
++Return to Overworld
+goto(/overworld)
+->DONE
+=dialogue_noboat
+{->dialogue_noboat1|->dialogue_noboat2|->dialogue_noboat3|->dialogue_noboat4}
+=dialogue_noboat1
+goto(/overworld)
+->DONE
+=dialogue_noboat2
+goto(/overworld)
+->DONE
+=dialogue_noboat3
+goto(/overworld)
+->DONE
+=dialogue_noboat4
+goto(/overworld)
+->DONE
+=dialogue_coupon
 goto(/overworld)
 ->DONE
 -> END
 
-=== door_conversation ===
-goto(/overworld)
+=== door ===
++{not inventory_key} -> door_nokey
++{inventory_key} -> door_key
+=door_nokey
+You don't have a key to open this door
+    +Return to Overworld
+    goto(/overworld)
+->DONE
+=door_key
+The large gold key sticks a little in the lock.
+*Wiggle it back and forth
+-By wiggling it back and forth you manage to find the right angle and insert it. 
+ *Open the lock
+-Slowly, with a creaky noise of complaint, the lock clicks open. 
+*Push open the door
+-You push your shoulder against the heavy wooden door. It, too, opens, slowly, revealing inch by inch a flower-filled meadow and
+*and and and and and and and and and aaaaaaaã̴̛̛̛̛̛͉͓̣̱̥̰̱͎̟̤͌̾̔̄͒͂͆̿́͌̎̉̓̍̑̅͋̐͐͂͒͋̂̋̅̓̉̓͒̈́̈́̔̽̿̾͗͌͆͑̉̏̔̓̿̄̽̇͂̐̄̉̿̑̈̓̉͒́̀̃͑̄̽̀́̃̈́̾̉͋̒̋̀͑͊͆̄̏͂̈͑͑̃͋̿͑͐̀͆̊̃́́̐̃̄͐̆́̂̈̀͆̀͑̿͘͘̚̕̚̚͘̚̕̚̕͝͝͝͝͝͝ň̷̢̢̡̨̨̨̡̧̨̨̢̛̛̛̛̛̛̛̟̣̟̤̩̦͕̘̬͔̟̞͙̹̟͓̭̬̩̝̘͍̞̣̞͈͕̰̱͓͎̺̳̝̰̪̝̳̯̮̬̣̟̫͍͈̠̗̠̼̰̜̺̖̙̩̖̤̬̲̞̳͍̯̰͇͕̙̞̺̤̻̮̪̙̫̙̪͎̪̦͖̦̥̣̻̪̮̤̦̱͕̱̩̖͚̭̻͚̟͚̟͖̱̖̰̩͓̬͈̺̦̞͓̘̹̰̦̗͔̞̥͎͙̲̹͔̠͈̠͓̫̘̙͓̥͍͙̺̜̻͈̳̰͖̰̹̻̘̰̱̮̱͕̞̪͉̦̮͕̖̼̭̘͚̖̱̗̩̞͍̩̤̻̼̦͔͙͔̬̯̹͔̹͙̥̦̳͙̟̳̥͍̪̼̘̯̝̣͖̣͉͎̤͙̞̗͔̳͈̯̦̟͉̝̹̞̫̪̬̘͉̲͍̞͉̜̼͕̒̓͑̅̍̈́͑͑̈͋̓̒̐̓̈́̐̌̋͐̑̌̏̾̈̀͒͆̃͑̈́̃̿͐̈́̐͋̿͌̂̽̋̈́̈̿̒̇͊̃̿͊͌̓̐͛̊͌̅͊͆͑͂͐̀͆̋͗͂͆̀̈́͑͒̊̑̔́̆̉́͗̏̂̇͐͂̐͒̏̽̒̀̏̂̀̑̄̂̐̏̒̇̿̏͗̊͆̈͛̅̆̉͋̍͗̂͛͌̋́̂͌̓͊̒̿̿̂̓̔̆̓̿͒̿̊͑̍̆̋̈̇̒̒͆̀̑͂̔̐͋̏̈́͗̒͒̄͂̊̈́̀̔͑͂̔̑̃̌͛̌́̍̀̋̀͗́́̾̓͆͑̒͋̅̈́̓̎̋͋̾̽̊̈́̓̈́̂̈́̍̓̐͛̔͛̽̈́͋̍̾̉̀̃̐̇̃̀̍̈́͌̓̈̈́͗̋͊̃̎͗͋̇̀͌̐͒̄͂̈́̽̌͘̚̕͘̕͘̚͘̚̕̚̕͘̚͜͜͜͜͜͜͜͜͜͜͠͝͠͝͝͝͝͝͠͝ͅͅͅͅͅͅͅͅḑ̴̧̛̛̛̤̩̤͖͔̝̟̘͖̹̮̯͇̟̙̜̳̖͍͇̯͈͓̗̹͎͖͎͔̟̤̬͓̯̻̳̤͓̄́̑͒͐́̇̊͌̐͌͒̓͑̊̓̄̓̽͋͆̃̽̉͆̌̒̉̇̅́̓̄̅͊̈̍̏̋̇̈̍̔͊̋̂̃͒̌̿̏̈́͊̾͋̌̒̓͊́̂̂̚̕̚̕͜͜͝͝͝͠*
+
+~ inventory_key = false
+-goto(/overworld)
 ->DONE
 -> END
 
 === kauvara ===
+image(kauvara)
+title(Kauvara, The Court Magician)
++{not kauvara_first and not inventory_cloak} -> kauvara_deflect
 *{not kauvara_first} -> kauvara_first
 +{kauvara_first} -> dialogue_start
+=kauvara_deflect
+You should speak to Deltador
+    +Return to Overworld
+    goto(/overworld)
+->DONE
 =kauvara_first
 {Kauvara says, “Oh, hello there! I wasn’t expecting to run into anyone out in the fields today. Is that my wizard’s cloak?”|"Is there anything else you needed?" Kauvara asks}
     *“King Deltador asked me to give {it|your cloak} to you.”[] you say
@@ -277,10 +380,12 @@ Kauvara says, “The lock on the gate can stick sometimes, but you just have to 
 -> END
 
 === eatsbugs ===
+image(eatsbugs)
+title(Eats Bugs)
 *{not eatsbugs_first} -> eatsbugs_first
-*{dialogue_sign} -> eatsbugs_end
-*{not inventory_sign} -> dialogue_no_sign
-*{inventory_sign} -> dialogue_sign
++{dialogue_sign} -> eatsbugs_end
++{not inventory_sign} -> dialogue_no_sign
++{inventory_sign} -> dialogue_sign
 =eatsbugs_first
 Eatsbugs says, “Hey, careful! It’s dark in there. You’d need a lantern to see anything, and it doesn’t look like you’ve found one yet.”
     *“It can’t be that dark.”[] you say
@@ -311,7 +416,7 @@ Eatsbugs says, “Hey, careful! It’s dark in there. You’d need a lantern to 
 ->DONE
 =dialogue_no_sign
 Eatsbugs says, “Have you found me a signpost yet? No? Then why are you here?”
-    *“Sorry to bother you.”
+    +“Sorry to bother you.”
     goto(/overworld)
     ->DONE
 =dialogue_sign
@@ -320,14 +425,24 @@ Eatsbugs says, “Wow, thank you! I didn’t think you’d actually help me. I�
     -Eatsbugs says, “I said I might tell you a secret. But alright. [info about hp in the swamp?]”
     *“Thank you.”[] you say
     -Eatsbugs says, “Don’t mention it. Hey, good luck on your quest or whatever it is you adventurers do! I’m about to go sleep for a week.”
+    ~ inventory_sign = false
     *Return to Map
     goto(/overworld)
     ->DONE
 ->DONE
 
 =eatsbugs_end
-Eatsbugs says, “[info about hp in the swamp]”
+Eatsbugs says, “Like, I said, [info about hp in the swamp]”
     *"Thank you"
     goto(/overworld)
     ->DONE
+->END
+
+=== gameover ===
+image(kauvara)
+title(Kauvara, Kass's Mom)
+Kauvara says, “Oh good, you made it in! That key can be a bit tricky sometimes. Now that you have Delt’s old sword, I think you’re just about ready to head out into the wider world and begin your adventure. If you see my son while you’re out there, will you tell him his mother loves him?”
++Tutorial complete!
+goto(neopets.com/404)
+->DONE
 ->END
