@@ -33,6 +33,10 @@ export default new class App {
             this.navigation.state = {"screen": "SplashScreen"}
         })
 
+        this.navigation.on("/map", (request) => {
+            this.navigation.state = {"screen": "MapScreen"}
+        })
+
         this.navigation.on("/dialogue/:dialogueKey", (request) => {
             const dialogueKey = request.wildcards.dialogueKey
 
