@@ -1757,9 +1757,14 @@
                         }],
                  "properties":[
                         {
+                         "name":"link",
+                         "type":"string",
+                         "value":"\/dialogue\/gameover"
+                        }, 
+                        {
                          "name":"text",
                          "type":"string",
-                         "value":"!"
+                         "value":"Standing before you is the Lost Sword of Deltador.  Pick up the sword?"
                         }],
                  "rotation":0,
                  "type":"",
