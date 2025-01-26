@@ -13,6 +13,9 @@ bigmusic.loop = true
 const quietmusic = new Audio(require("music/Deltador_s Domain.wav"))
 quietmusic.loop = true
 
+const WIZ_POSITIONS = [[32, 10], [4, 18], [23, 28]]
+const WIZ_RADIUS = 5
+
 let loop = new Yaafloop(function(delta) {
     App.update(delta)
     this.mount = Preact.render(<View/>, document.body, this.mount)
@@ -26,4 +29,20 @@ let loop = new Yaafloop(function(delta) {
         quietmusic.pause()
         quietmusic.currentTime = 0
     }
+
+    // The wiz song
+    var nearWiz = false
+    for(var i = 0; i < WIZ_POSITIONS.length; i++) {
+        var xDiff = Math.abs(App.player.position.x - WIZ_POSITIONS[i][0])
+        var yDiff = Math.abs(App.player.position.y - WIZ_POSITIONS[i][1])
+        var distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff)
+        if(distance < WIZ_RADIUS) {
+            bigmusic.volume = 1.0 - (distance.toFixed(4) / (WIZ_RADIUS).toFixed(4))
+            nearWiz = true
+        }
+    }
+    if(!nearWiz) {
+        bigmusic.volume = 0.0
+    }
+
 })
