@@ -15,6 +15,11 @@ export default class Story {
         }
     }
     startStory(dialogueKey) {
+        this.paragraphs = []
+        this.choices = []
+        this.title = undefined
+        this.portraitKey = undefined
+        
         try {
             this.ink.ChoosePathString(dialogueKey)
             this.continueStory()
@@ -29,6 +34,8 @@ export default class Story {
         // Flip to the next "page"
         this.pageNumber += 1
         this.lineNumber = 0
+
+        this.paragraphs = []
 
         // Generate story text - loop through available content
         while(this.ink.canContinue) {
@@ -51,6 +58,18 @@ export default class Story {
             if(text.startsWith("popup(")) {
                 const parameter = text.substring(6, text.length - 1)
                 window.alert(parameter)
+                continue
+            }
+
+            if(text.startsWith("image(")) {
+                const parameter = text.substring(6, text.length - 1)
+                this.portraitKey = parameter
+                continue
+            }
+
+            if(text.startsWith("title(")) {
+                const parameter = text.substring(6, text.length - 1)
+                this.title = parameter
                 continue
             }
 

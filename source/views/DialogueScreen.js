@@ -3,14 +3,29 @@ import App from "models/App.js"
 
 import "views/DialogueScreen.less"
 
+const PORTRAITS = {
+    "deltador": require("images/king-full.png")
+}
+
 export default class DialogueScreen {
     render() {
         return (
             <div class="DialogueScreen">
-                <title>Speaking</title>
+                {this.title}
                 <Story story={App.story}/>
             </div>
         )
+    }
+    get title() {
+        if(App.story.title != undefined) {
+            return (
+                <title>{App.story.title}</title>
+            )
+        } else {
+            return (
+                <title>In Conversation</title>
+            )
+        }
     }
 }
 
@@ -18,6 +33,8 @@ class Story {
     render() {
         return (
             <div class="Story">
+                {this.portrait}
+                {this.title}
                 {App.story.paragraphs.map((paragraph) => {
                     if(paragraph.text.startsWith("goto(")) {
                         const origin = paragraph.text.substring(5, paragraph.text.length - 1)
@@ -41,6 +58,19 @@ class Story {
                 ))}
             </div>
         )
+    }
+    get title() {
+        return (
+            <div class="Title">{App.story.title}</div>
+        )
+    }
+    get portrait() {
+        if(App.story.portraitKey != undefined
+        && PORTRAITS[App.story.portraitKey] != undefined) {
+            return (
+                <img class="Portrait" src={PORTRAITS[App.story.portraitKey]}/>
+            )
+        }
     }
     onClickChoice(choice) {
         return (event) => {

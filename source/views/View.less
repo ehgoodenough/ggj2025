@@ -26,14 +26,16 @@ body {
 }
 
 .View {
-    width: 860px;
-    padding: 2em;
-    margin: auto;
+    .Box {
+        width: 860px;
+        padding: 2em;
+        margin: auto;
 
-    &[blink] {
-        animation-name: blink;
-        animation-duration: 0.5s;
-        animation-fill-mode: forwards;
+        &[blink] {
+            animation-name: blink;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+        }
     }
 }
 
@@ -57,6 +59,6 @@ body {
 
 @font-face {
     font-weight: 400;
-    font-family: "comfortaa";
-    src: url("../fonts/comfortaa.ttf") format("truetype");
+    font-family: "pirata";
+    src: url("../fonts/pirata.ttf") format("truetype");
 }

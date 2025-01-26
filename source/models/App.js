@@ -5,7 +5,7 @@ import NavigationRouter from "models/NavigationRouter.js"
 import NavigationError from "./NavigationError.js"
 
 import storyFile from "data/Neoquest.ink.json"
-//import storyFile from "data/test.ink.json"
+// import storyFile from "data/test.ink.json" // debug
 import tilemapFile from "data/world.tiled.json"
 import tilesetFile from "data/tiles/heroes.tileset.json"
 
@@ -35,9 +35,6 @@ export default new class App {
 
         this.navigation.on("/dialogue/:dialogueKey", (request) => {
             const dialogueKey = request.wildcards.dialogueKey
-
-            this.story.paragraphs = []
-            this.story.choices = []
 
             try {
                 this.story.startStory(dialogueKey)

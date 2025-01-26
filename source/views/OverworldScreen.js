@@ -10,9 +10,7 @@ export default class OverworldScreen {
                 {this.title || <title>Neoquest</title>}
                 <div class="World">
                     {this.terrain}
-                    <div class="Adventurer" style={{
-                        "background-color": "red",
-                    }}/>
+                    <div class="Adventurer"/>
                     <div class="Character" style={{
                         "left": 28 - App.player.position.x + 3 + "em",
                         "top": 15 - App.player.position.y + 3 + "em",

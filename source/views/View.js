@@ -13,8 +13,8 @@ const Screens = {DialogueScreen, OverworldScreen, NavigationErrorScreen, CaveScr
 export default class View {
     render() {
         return (
-            <div class="Mount">
-                <div class="View" key={App.blink + ""} blink={App.blink}>
+            <div class="View">
+                <div class="Box" key={App.blink} blink={App.blink}>
                     {this.screen}
                 </div>
             </div>
