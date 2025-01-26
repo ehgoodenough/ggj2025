@@ -35,8 +35,13 @@ body {
         flex-direction: column;
         background-color: #EEE;
 
-        &[blink] {
+        &[effect=blink] {
             animation-name: blink;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+        }
+        &[effect=hurt] {
+            animation-name: hurt;
             animation-duration: 1s;
             animation-fill-mode: forwards;
         }
@@ -57,6 +62,15 @@ body {
     }
 }
 
+.StartButton {
+    color: @red;
+    cursor: pointer;
+
+    &:hover {
+        color: red;
+    }
+}
+
 /////////////////
 // Animations //
 ///////////////
@@ -64,6 +78,12 @@ body {
 @keyframes blink {
     0% {background-color: hotpink;}
     10% {background-color: hotpink;}
+    100% {background-color: transparent;}
+}
+
+@keyframes hurt {
+    0% {background-color: #5D2CD3;}
+    10% {background-color: #5D2CD3;}
     100% {background-color: transparent;}
 }
 

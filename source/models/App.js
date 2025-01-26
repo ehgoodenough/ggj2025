@@ -55,6 +55,49 @@ export default new class App {
             this.navigation.state = {"screen": "OverworldScreen"}
         })
 
+        this.navigation.on("/player/:key/:value", (request) => {
+            let key = request.wildcards.key
+            let value = request.wildcards.value
+
+            if(key == "health"
+            && isNaN(value) == false) {
+                this.player.health = Number.parseInt(value)
+                if(this.player.health <= 0) {
+                    this.player.health = this.player.maxhealth
+                    this.position = {...this.startingPosition}
+                    this.setAddressToPosition()
+                    this.hurt = Date.now() // MAKE A DEATH METHOD LATER, TO CONSISTENTLY KILL THEM AND RESPAWN THEM
+                    return
+                }
+            }
+            if(key == "maxhealth"
+            && isNaN(value) == false) {
+                this.player.maxhealth = Number.parseInt(value)
+                if(this.player.health > this.player.maxhealth) {
+                    this.player.health = this.player.maxhealth
+                    if(this.player.health <= 0) {
+                        this.player.health = this.player.maxhealth
+                        this.position = {...this.startingPosition}
+                        this.setAddressToPosition()
+                        this.hurt = Date.now()
+                        return
+                    }
+                }
+            }
+            if(key == "level"
+            && isNaN(value) == false) {
+                this.player.level = Number.parseInt(value)
+                if(this.player.level < 0) {
+                    this.player.level = 0
+                }
+            }
+            if(key == "name") {
+                this.player.name = value
+            }
+
+            this.player.setAddressToPosition()
+        })
+
         this.navigation.on("/overworld/:x/:y", (request) => {
             this.navigation.state = {"screen": "OverworldScreen"}
 

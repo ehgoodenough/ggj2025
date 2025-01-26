@@ -14,7 +14,7 @@ export default class View {
     render() {
         return (
             <div class="View">
-                <div class="Box" key={App.blink} blink={App.blink}>
+                <div class="Box" key={Math.max(App.blink ?? 0, App.hurt ?? 0)} effect={this.effect}>
                     <img class="Banner Header" src={require("images/banner.png")}/>
                     {this.screen}
                     <div class="Flex"/>
@@ -31,5 +31,11 @@ export default class View {
                 Uh oh!! Something went wrong~ Error 500
             </div>
         )
+    }
+    get effect() {
+        const hurt = App.hurt || 0
+        const blink = App.blink || 0
+        if(blink > hurt && blink > 0) return "blink"
+        if(hurt > blink && hurt > 0) return "hurt"
     }
 }
