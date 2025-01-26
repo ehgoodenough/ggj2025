@@ -23,19 +23,28 @@ body {
     color: @black;
     background-color: @white;
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    
-    display: flex;
-    justify-content: center;
 }
 
 .View {
     width: 860px;
     padding: 2em;
+    margin: auto;
+
+    &[blink] {
+        animation-name: blink;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
 }
 
 /////////////////
 // Animations //
 ///////////////
+
+@keyframes blink {
+    0% {background-color: hotpink;}
+    100% {background-color: transparent;}
+}
 
 @keyframes fadein {
     0% {opacity: 0;}
