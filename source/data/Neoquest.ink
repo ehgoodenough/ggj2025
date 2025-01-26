@@ -127,7 +127,7 @@ King Deltador says, “Kauvara should be somewhere just outside the city, to the
             ---King Deltador says, “I will admit that was perhaps an initial factor, but our differences run much deeper now. That is all I will say on the matter.”
             +++Say, “I’ll get it out of you eventually.”[] you say
             ->kass_betrayal
-    +{inventory_treasure>0}“Can you tell me more about this treasure?”[] you ask
+    +{inventory_treasure}“Can you tell me more about this treasure?”[] you ask
         --King Deltador says, “My father’s gold cufflinks! How in Neopia did you manage to retrieve them? Is Kass subdued? Are we free of his menace?”
         ++“No, I just took it. He didn’t see me.”[] you say
         --King Deltador says, “I see. Well, at least it’s nice to have this memento of my father again. Although I do have very little need of cufflinks…”
@@ -147,7 +147,7 @@ King Deltador says, “Kauvara should be somewhere just outside the city, to the
         --King Deltador says, “There’s no need to be ungrateful. Five gold pieces will buy you a Weak Healing Potion. Those cufflinks might save your life.”
         ++“Sorry. Thank you for the cufflinks.”[] you say
         ->dialogue_start
-    +{inventory_boat}“Can you tell me more about lava boats?”[] you ask
+    +(anniversary_card){inventory_boat}“Can you tell me more about lava boats?”[] you ask
         --King Deltador says, “As many headaches as those two have caused me, I have to admit it’s an ingenious scheme. Capitalizing on the volcanic eruption like that. If I still had possession of the summer palace, I would probably have done the same.”
         ++“Is that why you want Kass defeated? So you can take back the Keep?”[] you ask 
             ---King Deltador says, “Not at all! What need do I have for money? I simply wish to regain my family’s ancestral home and purge a great evil from my domain. Kass is known for his greed, not me.”
@@ -165,6 +165,10 @@ King Deltador says, “Kauvara should be somewhere just outside the city, to the
         ++"Mines?"
         --King Deltador says, “Yes, the harbor was mined during the last attempt on Kass’ Keep. A skilled mariner could avoid them, in my opinion, but apparently I am alone in that. The old adventuring spirit truly is dying out.”
         ++“I think I’ll stick to the lava.”[] you say
+        ->dialogue_start
+    +{inventory_wand}“Can you tell me more about The Wand of the Dark Faerie?”[] you ask
+        --King Deltador says “Long ago, when Neopia was young, a faerie tried to take over the realm. Her name has been lost to history, and she is known now only as The Darkest Faerie. The Faerie Queen Fyora imprisoned her at the bottom of the sea to keep the world safe. But after one thousand years the spell trapping her there had weakened enough to allow her to escape and return to conquer the realm she had failed to subdue. She attacked Faerieland and captured Queen Fyora. Only by working together with the original founders of this realm, my ancestors, were a pair of young adventurers able to once again defeat and imprison her. The wand she had used in capturing Fyora was left in the safekeeping of my great-great-great-great-great-great grandmother and has been passed down through the generations ever since.”
+        ++“Oh. Okay. I’ll keep that in mind.”[] you say
         ->dialogue_start
     
     +"Goodbye"
@@ -242,7 +246,7 @@ Party Wizard says, “That’s the edge of the tutorial map. You’ll have to ge
 === partywizard3 ===
 image(partywizard)
 title(Party Wizard)
-Party Wizard says, “This place used to look so freaking cool. Some huge battle or something, idk. Lots of skeletons and broken weapons and stuff. Now all the image files are borked and those tiles are glitched out. But on the upside, that’s how I learned to teleport, so I guess it’s not all bad.”
+Party Wizard says, “This place used to look so freaking cool. Some huge battle or something, idk. Lots of skeletons and broken weapons and stuff. Now all the image files are borked and those tiles are glitched out. But on the upside, that’s how I learned to teleport, so I guess it’s not all bad.  And as a headsup, some of the glitches have different teleportation behaviors than others.”
     +“I guess.”[] you say
     -goto(/overworld)
 ->DONE
@@ -271,7 +275,7 @@ The Boat Seller says, “How did you get in here? Kass is guarding the throne ro
     *“What?”[] you ask
     -The Boat Seller says, “Take your free boat before I change my mind.”
     *“Okay, give me the boat,”[] you say
-    -The Boat Seller says, “Unbelievably ungrateful. Fine. [advice for boating minigame].”
+    -The Boat Seller says, “Unbelievably ungrateful. Fine. Look I'm gonna be frank with you.  I gave you an overstock boat, and those things don't hold up like they should.  There is a full 3-month warranty on all of my products, so if anything happens talk to me again and I can see what I can do about replacing your product.”
     *Return to Overworld
     ~ inventory_boat = true
     goto(/overworld)
@@ -279,33 +283,74 @@ The Boat Seller says, “How did you get in here? Kass is guarding the throne ro
 =dialogue_start
 The Boat Seller says, “Hurry on out of here before Kass sees you! I’m not letting you ruin the lovely dinner I have planned for us.”
 +{inventory_boat} "What do I do with this boat?" -> dialogue_boat
-+{not inventory_boat} "Can I have a new lava boat?" -> dialogue_noboat
-*{inventory_coupon} "I have this coupon for a water boat. Can I have one of those instead?" -> dialogue_coupon
++{not inventory_boat} “[{Your lava boat isn't lava shark proof|Your lava boat caught on fire|I got mugged and lost my boat|Your lava boat doesn't float on water}. ]Can I have a new one?”
+-> dialogue_noboat
+*{inventory_coupon} "I have this coupon for a water boat. Can I have one of those instead?" 
+-> dialogue_coupon
++Return to Overworld
+    --goto(/overworld)
 ->DONE
 =dialogue_boat
-The Boat Seller says, “[advice for boating minigame]”
+The Boat Seller says, “Look I'm gonna be frank with you.  I gave you an overstock boat, and those things don't hold up like they should.  There is a full 3-month warranty on all of my products, so if anything happens talk to me again and I can see what I can do about replacing your product.”
 +Return to Overworld
 goto(/overworld)
 ->DONE
 =dialogue_noboat
 {->dialogue_noboat1|->dialogue_noboat2|->dialogue_noboat3|->dialogue_noboat4}
 =dialogue_noboat1
-Take another fuckin boat, fuggitaboutit
-*Return to Overworld
+The Boat Seller says, “I gave you free merchandise, you destroyed it, and now you want more? Is this the kind of adventurer Deltador wants to nurture? You young people and your entitlement, good lord.”
+    *“How old are you? Just out of curiosity.”[] you say
+        --The Boat Seller says, “Don’t push your luck. Do you want another boat or not?”
+        **“Sorry, yes, I want another boat.”
+    *“It’s actually really hard to navigate a lava flow.”[] you say
+        --The Boat Seller says, “I guess I wouldn’t know. I just make the boats. You’re my first customer and you didn’t even pay for it. Fine, we’ll call the first one a quality control test. Don’t crash this one.”
+        **Say, “I’ll try not to.”
+    -~ inventory_boat = true
+    goto(/overworld)
+->DONE
 ~ inventory_boat = true
 goto(/overworld)
 ->DONE
 =dialogue_noboat2
+The Boat Seller says, “Again? How hard can it really be? It’s just like sailing, but in lava. Are you sure you’re cut out to be an adventurer?”
+    *“You don’t have to be mean about it. Sailing is difficult.”[] you say
+    -The Boat Seller says, “Don’t I know it! I never had the competitive edge with it, not like Deltador had. But I never destroyed a boat, let alone two. I’m not sure you can be trusted with a third. Who’s to say you won’t crash that one as well and come back to beg me for a fourth?”
+    *“I won’t crash a third time.”[] you say
+    *“Did you and King Deltador sail together?”[] you ask
+        --The Boat Seller says, “Yes, in our youth. Kass never came with; he hates water. But Deltador and I made quite a formidable yachting team during our time together. Those days are over, alas. Sometimes you just have to pick sides.”
+        **“Do you really think reconciliation is impossible?”[] you ask
+        --The Boat Seller says, “You don’t know Deltador and Kass like I do. Two of the most stubborn neopets you’ll ever meet! Well, except that you won’t meet Kass if I have any say in it. Take this boat and try not to crash it this time.”
+        **“I won’t crash a third time.”
+    -The Boat Seller says, “That’s what they all say.”
+    *“I thought you didn’t have any customers.”[] you say
+    -The Boat Seller says, “Insolence! Take your replacement boat and get out of my sight. Your impudence is giving me indigestion. I’ll have to take tums before dinner or I won’t be able to handle the spices. Kass loves his cayenne.”
+    *“Good luck with dinner.”[] you say
+    -~ inventory_boat = true
 goto(/overworld)
 ->DONE
 =dialogue_noboat3
+The Boat Seller says, “I told you this would happen! I said you’d crash a third time and come back begging for more boats. Well, there aren’t any more boats, how about that? You’ve already wasted my entire afternoon, and you’re not going to keep wasting my evening. I have a romantic dinner to attend.”
+    *“Okay, I’ll just go back out through the throne room.”[] you threaten
+    -(anniversary_threat){The Boat Seller says, “Wait! Please, come back, don’t do that. I didn’t tell you the whole story. Tonight’s dinner is special because… it’s our anniversary. I can’t let anything ruin that. You can’t go back through where he could see you.”|}
+    *“Give me another boat, then.”
+    *{deltador.dialogue_start.anniversary_card}“Did Deltador send you an anniversary card?”
+        --The Boat Seller says, “How do you know about that? Never mind. Yes, he did, and no, I’m not showing it to my husband. His mother’s letters only upset him, and I know hearing from Deltador would only make things worse. Today is supposed to be a day just for the two of us. Not the two of us plus one nosy adventurer who can’t sail.”
+        ->anniversary_threat
+    -The Boat Seller says, “Eating me out of house and home, I swear. Fine. Now scram; it really does make me sick to look at you.”
+    *“Happy anniversary.”[] you say
+    ~ inventory_boat = true
 goto(/overworld)
 ->DONE
 =dialogue_noboat4
+The Boat Seller says, “I don’t know what I expected. You know what? I don’t care anymore. Take any boat you want. I don’t sell them anyway.”
++“Thank you.”
+~ inventory_boat = true
 goto(/overworld)
 ->DONE
 =dialogue_coupon
-goto(/overworld)
+The Boat Seller says, “That wretched Deltador! I thought I’d successfully destroyed all those. He never asked me before he issued them, and he expects me to honor them even now that I’ve moved on to lava boats. Does he honestly think water boats are at all profitable these days, when the waters are so treacherous? No, lava boats are where it’s at, and I’m sticking with them. I won’t accept a single piece of paper that originated from Deltador.”
+    *"Okay....."[] you say
+->dialogue_start
 ->DONE
 -> END
 
@@ -313,13 +358,52 @@ goto(/overworld)
 *{not crash1_first} -> crash1_first
 +{crash1_first} -> crash1_pass
 =crash1_first
-The boat sinks slowly into the lava
-*Shit
+You hit a lava shark, its fin slicing through the bottom of your boat like a lava knife through a butter hull.  You abandon ship and get dragged back by the current to Kass's Keep.  Stupid boat, you are going to have to give that fraudulent boat seller a piece of your mind.
+*Return to Overworld
 ~ inventory_boat = false
 goto(/overworld/48/30)
 ->DONE
 =crash1_pass
 goto(/overworld/46/27)
+->DONE
+
+=== crash2 ===
+*{not crash2_first} -> crash2_first
++{crash2_first} -> crash2_pass
+=crash2_first
+The sail of the boat catches on fire from an errant spark.  The entire boat quickly goes up in flames, clearly only the outside of the boat is fireproof.  It slowly drifts back to Kass's keep through the magma current and you hop off right as it gives one last harrumph of effort before sliding under the molten waves.
+*Return to Overworld
+~ inventory_boat = false
+goto(/overworld/48/30)
+->DONE
+=crash2_pass
+goto(/overworld/44/25)
+->DONE
+
+=== crash3 ===
+*{not crash3_first} -> crash3_first
++{crash3_first} -> crash3_pass
+=crash3_first
+Your guilt at almost ruining Boat Seller's anniversary dinner tears you apart.  You fall to the ground, stricken with remorse, and next thing you know you are curled up on the floor of Kass's Keep yet again.  You notice your pockets are empty and your boat is nowhere to be seen.  It appears that in your inconsolable state, someone robbed you. Thank goodness you still have your kidneys though.
+*Return to Overworld
+~ inventory_boat = false
+goto(/overworld/48/30)
+->DONE
+=crash3_pass
+goto(/overworld/46/21)
+->DONE
+
+=== crash4 ===
+*{not crash4_first} -> crash4_first
++{crash4_first} -> crash4_pass
+=crash4_first
+You see the shore ahead of you, and in a moment of cocksure victory you accidentally sail into the water instead of the lava.  Your boat instantly sinks and you have to swim back to Kass's Keep.  I guess he wasn't kidding about it being a lava boat.
+*Return to Overworld
+~ inventory_boat = false
+goto(/overworld/48/30)
+->DONE
+=crash4_pass
+goto(/overworld/44/19)
 ->DONE
 
 === treasure ===
@@ -469,7 +553,7 @@ Eatsbugs says, “Have you found me a signpost yet? No? Then why are you here?�
 =dialogue_sign
 Eatsbugs says, “Wow, thank you! I didn’t think you’d actually help me. I’m sorry for doubting you.”
     *“You said you’d tell me another secret?”[] you ask
-    -Eatsbugs says, “I said I might tell you a secret. But alright. [info about hp in the swamp?]”
+    -Eatsbugs says, “I said I might tell you a secret. But alright. Your URL bar can be used to navigate to different pages, but it can also be used to set player stats.  For example, if you delete everything after the \#/ in the URL bar and replace it with 'player/health/20', it will set your health to 20!”
     *“Thank you.”[] you say
     -Eatsbugs says, “Don’t mention it. Hey, good luck on your quest or whatever it is you adventurers do! I’m about to go sleep for a week.”
     ~ inventory_sign = false
@@ -479,7 +563,7 @@ Eatsbugs says, “Wow, thank you! I didn’t think you’d actually help me. I�
 ->DONE
 
 =eatsbugs_end
-Eatsbugs says, “Like, I said, [info about hp in the swamp]”
+Eatsbugs says, “Like, I said, your URL bar can be used to navigate to different pages, but it can also be used to set player stats.  For example, if you delete everything after the \#/ in the URL bar and replace it with 'player/health/20', it will set your health to 20!”
     +"Thank you"
     goto(/overworld)
     ->DONE
