@@ -15,8 +15,10 @@ export default class View {
         return (
             <div class="View">
                 <div class="Box" key={App.blink} blink={App.blink}>
-                    <img class="Banner" src={require("images/banner.png")}/>
+                    <img class="Banner Header" src={require("images/banner.png")}/>
                     {this.screen}
+                    <div class="Flex"/>
+                    <img class="Banner Footer" src={require("images/footer.png")}/>
                 </div>
             </div>
         )

@@ -3,6 +3,21 @@ import App from "models/App.js"
 
 import "views/OverworldScreen.less"
 
+let lastMonologue = undefined
+const monologue = ("I can’t believe she sent me another letter; doesn’t she know we’re not speaking? / “Yes, mom, I’m angry with you, and no, I don’t want to talk about it. And NO, I’m not acting like a child.” / I am Lord Kass! I don’t need her telling me what to do. / “Think of what all our friends will say if these horrible stories about you don’t stop!” As if I care what the idiots in Meridell think of me. / We’ll see who’s laughing when Deltador’s Domain is under my command instead of that old fool’s. What does she even see in him? / Neopia started going downhill as soon as he showed up. “Oh, I’m the long lost King Deltador, the once and future Neopian.” Look around you! / Our world is disintegrating before our very eyes. And what is our oh-so-great king doing? Chasing his own tail and making cow-eyes at my mother. But not for much longer. / That volcano erupting was a lucky break; now the only way into my castle is through the drawbridge. / No one could cross the Wacky Wocky Woods without first venturing far out into the Techo Mountain Caves to find the antidote. / No one would even know to look there without first defeating the Archmagus at the Temple of Roo! This castle is a fortress, and this treasure room is my sanctuary. / I’ve already beaten down armies at my door once. If a new challenger comes I will face them head on. / The traps are laid, now all I must do is wait. But first, dinner.").split("/")
+
+let lastBlink = undefined
+const BLINK_TEXT = [
+    "You .. are back where you started?",
+    "You seem to teleport when you touch the pink.",
+    "You feel a little sick from all the glitching.",
+    "You wonder how long this has been bugged.",
+    "You blink as the pink fades from your vision.",
+    "You remember fondly how Deltador's Domain used to buzz with other players. Now it is quiet and still.",
+    "You look around, hoping for something to be different. Anything to be different. But it is just as it always was.",
+    "You try to attract the attention of a mod by saying gay, but no such mod appears.",
+]
+
 export default class OverworldScreen {
     render() {
         return (
@@ -89,14 +104,34 @@ export default class OverworldScreen {
         if(terrain.interests[0] == undefined) return
 
         if(terrain.interests instanceof Array) {
-            return terrain.interests.map((interest) => {
+            let interests = terrain.interests.map((interest) => {
+                if(interest.text == "SPECIAL"
+                && lastMonologue != App.navigation.time) {
+                    lastMonologue = App.navigation.time
+                    App.navigation.state.interests = App.navigation.state.interests || []
+                    App.navigation.state.interests.push(monologue[0])
+                    monologue.shift()
+                }
                 let onClick = interest.link ? () => window.location = "#" + interest.link : undefined
                 return (
                     <p class="Interest" link={interest.link} onClick={onClick}>
-                        {interest.text}
+                        {interest.text == "SPECIAL" ? "" : interest.text}
                     </p>
                 )
             })
+
+            if(App.blink != lastBlink) {
+                lastBlink = App.blink
+                App.navigation.state.interests = App.navigation.state.interests || []
+                App.navigation.state.interests.push(BLINK_TEXT[0])
+                BLINK_TEXT.push(BLINK_TEXT.shift())
+            }
+
+            if(App.navigation.state.interests) {
+                interests = interests.concat(App.navigation.state.interests)
+            }
+
+            return interests
         }
     }
     get terrain() {
