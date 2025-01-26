@@ -2,9 +2,10 @@ VAR inventory_cloak = false
 VAR inventory_key = false
 VAR inventory_sign = false
 VAR inventory_banner = false
-VAR inventory_treasure = 0
+VAR inventory_treasure = false
 VAR inventory_boat = false
 VAR inventory_coupon = false
+VAR inventory_wand = false
 
 === deltador ===
 image(deltador)
@@ -209,7 +210,7 @@ Party Wizard says, “Yeah, that one was a pretty dope flash animation of, like,
     -goto(/overworld)
 ->DONE
 =dialogue_nokey
-Party Wizard says, “[Jargon about how to use the url bar pls help]”
+Party Wizard says, “If you noticed, some of the glitches around here will send you to different locations on the map.  If you pay attention to the URL bar, you can see the locations you are being sent to by referencing X and Y coordinates.  You can even manipulate those coordinates to trigger your own teleport to go anywhere you want!  I've been playing around with them, and they can't get me everywhere but I can go a lot of places that would otherwise be inaccesible without them!”
     +“That feels like cheating, but thanks, I guess.”[] you say
     *“Is that how you got here?”[] you ask
 -Party Wizard says, “Work smarter, not harder. Now go forth, conquer, et cetera et cetera. Come find me again if you ever need advice.”
@@ -320,9 +321,28 @@ goto(/overworld/46/27)
 === treasure ===
 image(kass)
 title(Lord Kass, Rightful Ruler of the Neopian Throne)
-You take the gold without Kass noticing.
++{inventory_wand} -> treasure_empty
+*{inventory_treasure == 12} -> treasure_weapon
++{inventory_treasure < 12} -> treasure_normal
+=treasure_normal
+You take {the gold cufflinks|pile of gems|the Lost Ark of the Covenant|72 pupusas|a handful of goodberries|the dubloons|a holographic first edition Charizard|your childhood memories|the gold-plated tin-plated gold goblets|the unbelievably heavy anchor|Kass's anniversary gift|the Washington State Yearly Fishing License} without Kass noticing.
+    +Return to Overworld
+    ~inventory_treasure = inventory_treasure + 1
+    goto(/overworld)
+    ->DONE
+=treasure_weapon
+You find the SUPER AWESOME AMAZINGLY UBER COOL CHOCOLATELY COATED MEGA SUPER WAND OF THE DARK FAIRIE.  This is a legendary rarity weapon!
+    *Wow, that's so exciting! Return to Overworld.
+    ~inventory_wand = true
+    goto(/overworld)
+    ->DONE
+=treasure_empty
+Don't you have anything better to do?
     +Return to Overworld
     goto(/overworld)
+    ->DONE
+    
+
 ->DONE
 === door ===
 +{not inventory_key} -> door_nokey
