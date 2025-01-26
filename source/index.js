@@ -10,11 +10,13 @@ import App from "models/App.js"
 
 const bigmusic = new Audio(require("music/Neopia City.wav"))
 bigmusic.loop = true
+const wizmusic = new Audio(require("music/Party Wizard.mp3"))
+wizmusic.loop = true;
 const quietmusic = new Audio(require("music/Deltador_s Domain.wav"))
 quietmusic.loop = true
 
 const WIZ_POSITIONS = [[32, 10], [4, 18], [23, 28]]
-const WIZ_RADIUS = 5
+const WIZ_RADIUS = 7
 
 let loop = new Yaafloop(function(delta) {
     App.update(delta)
@@ -37,12 +39,14 @@ let loop = new Yaafloop(function(delta) {
         var yDiff = Math.abs(App.player.position.y - WIZ_POSITIONS[i][1])
         var distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff)
         if(distance < WIZ_RADIUS) {
-            bigmusic.volume = 1.0 - (distance.toFixed(4) / (WIZ_RADIUS).toFixed(4))
+            wizmusic.play()
+            wizmusic.volume = 1.0 - (distance.toFixed(4) / (WIZ_RADIUS).toFixed(4))
+            bigmusic.volume = (distance.toFixed(4) / (WIZ_RADIUS).toFixed(4))
             nearWiz = true
         }
     }
     if(!nearWiz) {
-        bigmusic.volume = 0.0
+        wizmusic.volume = 0.0
     }
 
 })
