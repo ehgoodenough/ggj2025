@@ -4,7 +4,10 @@ import App from "models/App.js"
 import "views/DialogueScreen.less"
 
 const PORTRAITS = {
-    "deltador": require("images/king-full.png")
+    "deltador": require("images/king-full.png"),
+    "partywizard": require("images/wiz-full.png"),
+    "kass": require("images/imp-full.png"),
+    "kauvara": require("images/cow-full.png"),
 }
 
 export default class DialogueScreen {
