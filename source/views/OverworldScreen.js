@@ -18,6 +18,31 @@ export default class OverworldScreen {
                         "top": 15 - App.player.position.y + 3 + "em",
                         "background-image": "url(" + require("images/king.png") + ")"
                     }}/>
+                    <div class="Character" style={{
+                        "left": 32 - App.player.position.x + 3 + "em",
+                        "top": 10 - App.player.position.y + 3 + "em",
+                        "background-image": "url(" + require("images/wiz.png") + ")"
+                    }}/>
+                    <div class="Character" style={{
+                        "left": 4 - App.player.position.x + 3 + "em",
+                        "top": 18 - App.player.position.y + 3 + "em",
+                        "background-image": "url(" + require("images/wiz.png") + ")"
+                    }}/>
+                    <div class="Character" style={{
+                        "left": 23 - App.player.position.x + 3 + "em",
+                        "top": 28 - App.player.position.y + 3 + "em",
+                        "background-image": "url(" + require("images/wiz.png") + ")"
+                    }}/>
+                    <div class="Character" style={{
+                        "left": 24 - App.player.position.x + 3 + "em",
+                        "top": 21 - App.player.position.y + 3 + "em",
+                        "background-image": "url(" + require("images/cow.png") + ")"
+                    }}/>
+                    <div class="Character" style={{
+                        "left": 43 - App.player.position.x + 3 + "em",
+                        "top": 34 - App.player.position.y + 3 + "em",
+                        "background-image": "url(" + require("images/imp.png") + ")"
+                    }}/>
                 </div>
                 <div class="Controls">
                     <div class="Compass">
