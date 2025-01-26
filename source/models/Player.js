@@ -1,3 +1,4 @@
+import App from "models/App.js"
 import Keyb from "keyb"
 
 const DIRECTIONS = {
@@ -19,6 +20,13 @@ export default class Player {
         const direction = DIRECTIONS[directionKey]
 
         if(direction == undefined) return
+
+        const xy = (this.position.x + direction.x) + "/" + (this.position.y + direction.y)
+        if(App.world.terrain[xy] != undefined
+        && App.world.terrain[xy].hasCollision == true) {
+            return
+        }
+
 
         this.position.x += direction.x
         this.position.y += direction.y

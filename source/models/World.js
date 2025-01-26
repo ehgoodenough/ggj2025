@@ -98,6 +98,10 @@ export default class World {
                     if(this.findPropertyValue(tile.properties, "color") != undefined) {
                         this.terrain[position.xy].color = this.findPropertyValue(tile.properties, "color")
                     }
+
+                    if(this.findPropertyValue(tile.properties, "hasCollision") != undefined) {
+                        this.terrain[position.xy].hasCollision = this.findPropertyValue(tile.properties, "hasCollision")
+                    }
                 })
             }
         })
