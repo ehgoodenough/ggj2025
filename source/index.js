@@ -41,7 +41,7 @@ let loop = new Yaafloop(function(delta) {
         if(distance < WIZ_RADIUS) {
             wizmusic.play()
             wizmusic.volume = 1.0 - (distance.toFixed(4) / (WIZ_RADIUS).toFixed(4))
-            bigmusic.volume = (distance.toFixed(4) / (WIZ_RADIUS).toFixed(4))
+            bigmusic.volume = (distance.toFixed(4) / (WIZ_RADIUS).toFixed(4)) / 2.0
             nearWiz = true
         }
     }
