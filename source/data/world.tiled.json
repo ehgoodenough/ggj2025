@@ -1436,6 +1436,11 @@
                         }],
                  "properties":[
                         {
+                         "name":"link",
+                         "type":"string",
+                         "value":"\/dialogue\/treasure"
+                        }, 
+                        {
                          "name":"text",
                          "type":"string",
                          "value":"You are in the treasurey of Kass's Keep.  You are surrounded by gold."
@@ -2612,6 +2617,34 @@
                  "width":0,
                  "x":1360,
                  "y":560
+                }, 
+                {
+                 "height":360,
+                 "id":48,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"SPECIAL"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":280,
+                 "x":1800,
+                 "y":1200
+                }, 
+                {
+                 "height":0,
+                 "id":49,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":648,
+                 "y":1475
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2676,7 +2709,7 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":48,
+ "nextobjectid":50,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.6",

@@ -58,6 +58,8 @@ export default new class App {
         this.navigation.on("/overworld/:x/:y", (request) => {
             this.navigation.state = {"screen": "OverworldScreen"}
 
+            this.navigation.time = Date.now()
+
             this.player.position.x = Number.parseInt(request.wildcards.x)
             this.player.position.y = Number.parseInt(request.wildcards.y)
             this.player.position.xy = this.player.position.x + "/" + this.player.position.y
