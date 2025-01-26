@@ -22,11 +22,6 @@
                  "name":"color",
                  "type":"string",
                  "value":"dad45e"
-                }, 
-                {
-                 "name":"debug",
-                 "type":"int",
-                 "value":1
                 }]
         }, 
         {
@@ -39,11 +34,6 @@
                  "name":"color",
                  "type":"string",
                  "value":"ccc35e"
-                }, 
-                {
-                 "name":"debug",
-                 "type":"int",
-                 "value":2
                 }]
         }, 
         {
@@ -689,11 +679,6 @@
                  "name":"color",
                  "type":"string",
                  "value":"a3ce27"
-                }, 
-                {
-                 "name":"isTree",
-                 "type":"bool",
-                 "value":true
                 }]
         }, 
         {
@@ -706,11 +691,6 @@
                  "name":"color",
                  "type":"string",
                  "value":"a3ce27"
-                }, 
-                {
-                 "name":"isTree",
-                 "type":"bool",
-                 "value":true
                 }]
         }, 
         {
@@ -747,11 +727,6 @@
                  "name":"color",
                  "type":"string",
                  "value":"258b88"
-                }, 
-                {
-                 "name":"isTree",
-                 "type":"bool",
-                 "value":true
                 }]
         }, 
         {
@@ -764,11 +739,6 @@
                  "name":"color",
                  "type":"string",
                  "value":"258b88"
-                }, 
-                {
-                 "name":"isTree",
-                 "type":"bool",
-                 "value":true
                 }]
         }, 
         {

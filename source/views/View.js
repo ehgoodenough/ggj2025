@@ -12,6 +12,13 @@ const Screens = {DialogueScreen, OverworldScreen, NavigationErrorScreen, Cave, S
 
 export default class View {
     render() {
+        return (
+            <div class="View">
+                {this.screen}
+            </div>
+        )
+    }
+    get screen() {
         const Screen = Screens[App?.navigation?.state?.screen]
         if(Screen != undefined) return <Screen/>
         return (

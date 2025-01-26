@@ -7,7 +7,7 @@ export default class OverworldScreen {
     render() {
         return (
             <div class="OverworldScreen">
-                <title>Traveling Neopia</title>
+                {this.title || <title>Neoquest</title>}
                 <div class="World">
                     {this.terrain}
                     <div class="Adventurer" style={{
@@ -30,10 +30,25 @@ export default class OverworldScreen {
                         </map>
                     </div>
                     <div class="Interests">
-                        {this.interests}
+                        {this.interests || <p class="Interest">You are wandering</p>}
                     </div>
                 </div>
             </div>
+        )
+    }
+    get title() {
+        if(App.world == undefined) return
+        if(App.world.terrain == undefined) return
+        const xy = App.player.position.x + "/" + App.player.position.y
+        const terrain = App.world.terrain[xy]
+        if(terrain == undefined) return
+        if(terrain.interests == undefined) return
+        if(terrain.interests[0] == undefined) return
+
+        return (
+            <title>
+                {terrain.interests[terrain.interests.length - 1].text}
+            </title>
         )
     }
     get interests() {
@@ -42,12 +57,14 @@ export default class OverworldScreen {
         const xy = App.player.position.x + "/" + App.player.position.y
         const terrain = App.world.terrain[xy]
         if(terrain == undefined) return
+        if(terrain.interests == undefined) return
+        if(terrain.interests[0] == undefined) return
 
         if(terrain.interests instanceof Array) {
             return terrain.interests.map((interest) => {
                 let onClick = interest.goto ? () => window.location = "#" + interest.goto : undefined
                 return (
-                    <p goto={interest.goto} onClick={onClick}>
+                    <p class="Interest" goto={interest.goto} onClick={onClick}>
                         {interest.text}
                     </p>
                 )
