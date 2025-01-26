@@ -56,6 +56,11 @@ export default class OverworldScreen {
                         "top": 34 - App.player.position.y + 3 + "em",
                         "background-image": "url(" + require("images/imp.png") + ")"
                     }}/>
+                    <div class="Character" style={{
+                        "left": 53 - App.player.position.x + 3 + "em",
+                        "top": 31 - App.player.position.y + 3 + "em",
+                        "background-image": "url(" + require("images/boatseller.png") + ")"
+                    }}/>
                 </div>
                 <div class="Controls">
                     <div class="Compass">
@@ -109,7 +114,7 @@ export default class OverworldScreen {
                 && lastMonologue != App.navigation.time) {
                     lastMonologue = App.navigation.time
                     App.navigation.state.interests = App.navigation.state.interests || []
-                    App.navigation.state.interests.push(monologue[0])
+                    App.navigation.state.interests.push(<i>{monologue[0]}</i>)
                     monologue.shift()
                 }
                 let onClick = interest.link ? () => window.location = "#" + interest.link : undefined
