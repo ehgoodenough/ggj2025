@@ -173,7 +173,7 @@ King Deltador says, “Kauvara should be somewhere just outside the city, to the
 ->END
 
 === partywizard1 ===
-image(partywizrd)
+image(partywizard)
 title(Party Wizard)
 *{not partywizard1_first} -> partywizard1_first
 +{partywizard1_first} -> dialogue_start
@@ -225,6 +225,8 @@ Party Wizard says, “If you noticed, some of the glitches around here will send
 -> END
 
 === partywizard2 ===
+image(partywizard)
+title(Party Wizard)
 Party Wizard says, “That’s the edge of the tutorial map. You’ll have to get that sword if you want to go any further that way.”
     +“Okay.”[] you say
     *“Can I take your signpost?”[] you ask
@@ -238,6 +240,8 @@ Party Wizard says, “That’s the edge of the tutorial map. You’ll have to ge
 ->END
 
 === partywizard3 ===
+image(partywizard)
+title(Party Wizard)
 Party Wizard says, “This place used to look so freaking cool. Some huge battle or something, idk. Lots of skeletons and broken weapons and stuff. Now all the image files are borked and those tiles are glitched out. But on the upside, that’s how I learned to teleport, so I guess it’s not all bad.”
     +“I guess.”[] you say
     -goto(/overworld)
@@ -476,7 +480,7 @@ Eatsbugs says, “Wow, thank you! I didn’t think you’d actually help me. I�
 
 =eatsbugs_end
 Eatsbugs says, “Like, I said, [info about hp in the swamp]”
-    *"Thank you"
+    +"Thank you"
     goto(/overworld)
     ->DONE
 ->END
