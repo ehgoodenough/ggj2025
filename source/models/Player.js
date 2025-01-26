@@ -26,6 +26,11 @@ export default class Player {
         && App.world.terrain[xy].hasCollision == true) {
             return
         }
+        if(App.world.terrain[xy] != undefined
+        && App.world.terrain[xy].autolink != undefined) {
+            window.location = "#/dialogue/" + App.world.terrain[xy].autolink
+            return
+        }
 
         if(xy == "48/29"
         && App.story.ink.variablesState.$("inventory_boat") == false) {

@@ -52,6 +52,7 @@ export default class World {
                             "key": this.findPropertyValue(object.properties, "key") || object.name,
                             "teleport": this.findPropertyValue(object.properties, "teleport"),
                             "link": this.findPropertyValue(object.properties, "link"),
+                            "autolink": this.findPropertyValue(object.properties, "autolink"),
                             "hurt": this.findPropertyValue(object.properties, "hurt"),
                             "text": this.findPropertyValue(object.properties, "text"),
 
@@ -68,6 +69,7 @@ export default class World {
                             "key": this.findPropertyValue(object.properties, "key") || object.name,
                             "teleport": this.findPropertyValue(object.properties, "teleport"),
                             "link": this.findPropertyValue(object.properties, "link"),
+                            "autolink": this.findPropertyValue(object.properties, "autolink"),
                             "hurt": this.findPropertyValue(object.properties, "hurt"),
                             "text": this.findPropertyValue(object.properties, "text"),
 
@@ -120,6 +122,10 @@ export default class World {
                         this.terrain[position.xy].link = this.findPropertyValue(tile.properties, "link")
                     }
 
+                    if(this.findPropertyValue(tile.properties, "autolink") != undefined) {
+                        this.terrain[position.xy].autolink = this.findPropertyValue(tile.properties, "autolink")
+                    }
+
                     if(this.findPropertyValue(tile.properties, "hurt") != undefined) {
                         this.terrain[position.xy].hurt = this.findPropertyValue(tile.properties, "hurt")
                     }
@@ -156,6 +162,9 @@ export default class World {
                     }
                     if(zone.hurt != undefined) {
                         terrain.hurt = zone.hurt
+                    }
+                    if(zone.autolink != undefined) {
+                        terrain.autolink = zone.autolink
                     }
                 }
             })

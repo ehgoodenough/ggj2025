@@ -19,7 +19,7 @@ export default class Story {
         this.choices = []
         this.title = undefined
         this.portraitKey = undefined
-        
+
         try {
             this.ink.ChoosePathString(dialogueKey)
             this.continueStory()
@@ -47,12 +47,12 @@ export default class Story {
             }
             if(text.startsWith("goto(")) {
                 const parameter = text.substring(5, text.length - 1)
-                if(parameter.startsWith("https://")) {
-                    window.location = parameter
+                if(parameter.startsWith("www.")) {
+                    window.location = "https://" + parameter
                 } else {
                     window.location = "/#" + parameter
                 }
-                return
+                continue
             }
 
             if(text.startsWith("popup(")) {

@@ -6,7 +6,7 @@
 pokaspokdappaoskdpasodk
 Hello
 + Go to cave
-    goto(/cave)
+    goto(www.neopets.com)
     ->END
 + Go to overworld
     goto(/overworld)

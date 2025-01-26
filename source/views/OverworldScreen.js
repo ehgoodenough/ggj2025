@@ -113,7 +113,6 @@ export default class OverworldScreen {
                     monologue.shift()
                 }
                 let onClick = interest.link ? () => window.location = "#" + interest.link : undefined
-                console.log(interest)
                 return (
                     <p class="Interest" link={interest.link} onClick={onClick}>
                         {interest.text == "SPECIAL" ? "" : interest.text}

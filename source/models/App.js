@@ -4,8 +4,8 @@ import Player from "models/Player.js"
 import NavigationRouter from "models/NavigationRouter.js"
 import NavigationError from "./NavigationError.js"
 
-import storyFile from "data/Neoquest.ink.json"
-// import storyFile from "data/test.ink.json" // debug
+// import storyFile from "data/Neoquest.ink.json"
+import storyFile from "data/test.ink.json" // debug
 import tilemapFile from "data/world.tiled.json"
 import tilesetFile from "data/tiles/heroes.tileset.json"
 
