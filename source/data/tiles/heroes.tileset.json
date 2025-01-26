@@ -8,7 +8,7 @@
  "margin":0,
  "name":"heroes.tileset",
  "spacing":0,
- "tilecount":109,
+ "tilecount":112,
  "tiledversion":"1.8.6",
  "tileheight":48,
  "tiles":[
@@ -1318,7 +1318,7 @@
                 {
                  "name":"hurt",
                  "type":"string",
-                 "value":"5"
+                 "value":"2"
                 }]
         }, 
         {
@@ -1453,6 +1453,24 @@
         {
          "id":114,
          "image":"neoquest\/glitch2.gif",
+         "imageheight":40,
+         "imagewidth":40
+        }, 
+        {
+         "id":115,
+         "image":"neoquest\/gold.jpg",
+         "imageheight":40,
+         "imagewidth":40
+        }, 
+        {
+         "id":116,
+         "image":"neoquest\/gold2.jpg",
+         "imageheight":40,
+         "imagewidth":40
+        }, 
+        {
+         "id":117,
+         "image":"neoquest\/castle_floor.jpg",
          "imageheight":40,
          "imagewidth":40
         }],

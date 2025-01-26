@@ -13,8 +13,14 @@ const DIRECTIONS = {
 }
 
 export default class Player {
-    constructor({position}) {
+    constructor({position, health = 10}) {
         this.position = {...position}
+        this.startingPosition = {...position}
+
+        this.health = health
+        this.maxhealth = health
+
+        this.level = 1
     }
     move(directionKey) {
         const direction = DIRECTIONS[directionKey]
@@ -32,9 +38,20 @@ export default class Player {
             return
         }
 
-        if(xy == "48/29"
+        if(xy == "48/29" // don't even get me started on this hack
         && App.story.ink.variablesState.$("inventory_boat") == false) {
             return
+        }
+
+        if(App.world.terrain[xy].hurt > 0) {
+            App.hurt = Date.now()
+            App.player.health -= 2 // hardcoded cuz fuck You
+            if(App.player.health <= 0) {
+                App.player.health = App.player.maxhealth
+                this.position = {...this.startingPosition}
+                this.setAddressToPosition()
+                return
+            }
         }
 
         this.position.x += direction.x
