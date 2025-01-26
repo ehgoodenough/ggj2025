@@ -14,7 +14,7 @@
     // user-select: none;
 }
 
-html, body {
+html, body, .View {
     width: 100%;
     height: 100%;
 }
@@ -27,19 +27,32 @@ body {
 
 .View {
     .Box {
-        .Banner {
-            width: 100%;
-            margin-bottom: 3em;
-        }
         width: 860px;
+        height: 100%;
         padding: 0em;
-        // background-color: fadeout(@yellow, 9%);
         margin: auto;
+        display: flex;
+        flex-direction: column;
+        background-color: #EEE;
 
         &[blink] {
             animation-name: blink;
-            animation-duration: 0.5s;
+            animation-duration: 1s;
             animation-fill-mode: forwards;
+        }
+
+        .Flex {
+            flex: 1;
+        }
+
+        .Banner {
+            width: 100%;
+            &.Header {
+                margin-bottom: 3em;
+            }
+            &.Footer {
+                margin-top: 3em;
+            }
         }
     }
 }
@@ -50,6 +63,7 @@ body {
 
 @keyframes blink {
     0% {background-color: hotpink;}
+    10% {background-color: hotpink;}
     100% {background-color: transparent;}
 }
 

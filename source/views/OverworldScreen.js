@@ -89,7 +89,7 @@ export default class OverworldScreen {
         if(terrain.interests[0] == undefined) return
 
         if(terrain.interests instanceof Array) {
-            return terrain.interests.map((interest) => {
+            let interests = terrain.interests.map((interest) => {
                 let onClick = interest.link ? () => window.location = "#" + interest.link : undefined
                 return (
                     <p class="Interest" link={interest.link} onClick={onClick}>
@@ -97,6 +97,12 @@ export default class OverworldScreen {
                     </p>
                 )
             })
+
+            if(App.blink != undefined) {
+                interests.push(<p>You somehow glitched your position.</p>)
+            }
+
+            return interests
         }
     }
     get terrain() {
