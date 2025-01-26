@@ -434,6 +434,11 @@
                         }],
                  "properties":[
                         {
+                         "name":"song",
+                         "type":"string",
+                         "value":"deltador"
+                        }, 
+                        {
                          "name":"text",
                          "type":"string",
                          "value":"You are in Deltador's Domain"
@@ -1351,6 +1356,11 @@
                         }],
                  "properties":[
                         {
+                         "name":"song",
+                         "type":"string",
+                         "value":"kass"
+                        }, 
+                        {
                          "name":"text",
                          "type":"string",
                          "value":"You are in Kass's Keep"
@@ -1384,6 +1394,11 @@
                          "y":0
                         }],
                  "properties":[
+                        {
+                         "name":"song",
+                         "type":"string",
+                         "value":"kass"
+                        }, 
                         {
                          "name":"teleport",
                          "type":"string",
@@ -1441,6 +1456,11 @@
                          "value":"\/dialogue\/treasure"
                         }, 
                         {
+                         "name":"song",
+                         "type":"string",
+                         "value":"kass"
+                        }, 
+                        {
                          "name":"text",
                          "type":"string",
                          "value":"You are in the treasurey of Kass's Keep.  You are surrounded by gold."
@@ -1450,7 +1470,7 @@
                  "visible":true,
                  "width":0,
                  "x":1800,
-                 "y":1160
+                 "y":1200
                 }, 
                 {
                  "height":0,
