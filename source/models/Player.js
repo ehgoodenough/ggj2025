@@ -14,7 +14,7 @@ const DIRECTIONS = {
 
 export default class Player {
     constructor({position}) {
-        this.position = position
+        this.position = {...position}
     }
     move(directionKey) {
         const direction = DIRECTIONS[directionKey]

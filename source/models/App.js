@@ -22,7 +22,7 @@ export default new class App {
         })
 
         this.player = new Player({
-            "position": {...STARTING_POSITION}
+            "position": {"x": 7, "y": 5}
         })
 
         this.navigation = new NavigationRouter({
@@ -62,7 +62,7 @@ export default new class App {
             || this.player.position.x >= this.world.width
             || this.player.position.y >= this.world.height) {
                 this.player.position = {...STARTING_POSITION}
-                this.setAddressToPosition()
+                this.player.setAddressToPosition()
             }
             this.navigation.state = {"screen": "OverworldScreen"}
         })
@@ -79,6 +79,10 @@ export default new class App {
 
         this.navigation.onNavigationError = (error) => {
             this.navigation.state = {"screen": "NavigationErrorScreen", "error": error}
+        }
+
+        this.navigation.onError = (error) => {
+            console.log(error)
         }
     }
     update(delta) {
