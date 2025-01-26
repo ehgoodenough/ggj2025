@@ -8,7 +8,7 @@
  "margin":0,
  "name":"heroes.tileset",
  "spacing":0,
- "tilecount":89,
+ "tilecount":106,
  "tiledversion":"1.8.6",
  "tileheight":48,
  "tiles":[
@@ -654,7 +654,7 @@
                 {
                  "name":"color",
                  "type":"string",
-                 "value":"green"
+                 "value":"e7924b"
                 }]
         }, 
         {
@@ -666,7 +666,7 @@
                 {
                  "name":"color",
                  "type":"string",
-                 "value":"green"
+                 "value":"e7924b"
                 }]
         }, 
         {
@@ -702,7 +702,7 @@
                 {
                  "name":"color",
                  "type":"string",
-                 "value":"green"
+                 "value":"ffebd7"
                 }]
         }, 
         {
@@ -714,7 +714,7 @@
                 {
                  "name":"color",
                  "type":"string",
-                 "value":"green"
+                 "value":"ffebd7"
                 }]
         }, 
         {
@@ -750,7 +750,7 @@
                 {
                  "name":"color",
                  "type":"string",
-                 "value":"green"
+                 "value":"a48686"
                 }, 
                 {
                  "name":"hasCollision",
@@ -767,7 +767,7 @@
                 {
                  "name":"color",
                  "type":"string",
-                 "value":"green"
+                 "value":"a48686"
                 }, 
                 {
                  "name":"hasCollision",
@@ -784,7 +784,7 @@
                 {
                  "name":"color",
                  "type":"string",
-                 "value":"green"
+                 "value":"a48686"
                 }, 
                 {
                  "name":"hasCollision",
@@ -888,7 +888,7 @@
                 {
                  "name":"color",
                  "type":"string",
-                 "value":"green"
+                 "value":"198c88"
                 }]
         }, 
         {
@@ -900,7 +900,7 @@
                 {
                  "name":"color",
                  "type":"string",
-                 "value":"green"
+                 "value":"ff6657"
                 }]
         }, 
         {
@@ -1214,6 +1214,229 @@
                  "type":"string",
                  "value":"ff6657"
                 }]
+        }, 
+        {
+         "id":89,
+         "image":"neoquest\/cave_ent.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"c47349"
+                }]
+        }, 
+        {
+         "id":90,
+         "image":"neoquest\/city.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"cccccc"
+                }]
+        }, 
+        {
+         "id":91,
+         "image":"neoquest\/forest.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"a3ce27"
+                }]
+        }, 
+        {
+         "id":92,
+         "image":"neoquest\/grassland.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"dad45e"
+                }]
+        }, 
+        {
+         "id":93,
+         "image":"neoquest\/hills.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"e0a464"
+                }]
+        }, 
+        {
+         "id":94,
+         "image":"neoquest\/jungle.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"258b88"
+                }]
+        }, 
+        {
+         "id":95,
+         "image":"neoquest\/mountain.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"a48686"
+                }, 
+                {
+                 "name":"hasCollision",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":96,
+         "image":"neoquest\/swamp.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"825360"
+                }, 
+                {
+                 "name":"hurt",
+                 "type":"string",
+                 "value":"5"
+                }]
+        }, 
+        {
+         "id":97,
+         "image":"neoquest\/water_iso.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"639bff"
+                }, 
+                {
+                 "name":"hasCollision",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":100,
+         "image":"neoquest\/lava.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"639bff"
+                }]
+        }, 
+        {
+         "id":101,
+         "image":"neoquest\/glitch.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"FF69B4"
+                }, 
+                {
+                 "name":"teleport",
+                 "type":"string",
+                 "value":"29\/15"
+                }]
+        }, 
+        {
+         "id":102,
+         "image":"neoquest\/castle.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"cccccc"
+                }]
+        }, 
+        {
+         "id":107,
+         "image":"neoquest\/castle_carpet.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"ff6657"
+                }]
+        }, 
+        {
+         "id":108,
+         "image":"neoquest\/castle_floor.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"cccccc"
+                }]
+        }, 
+        {
+         "id":109,
+         "image":"neoquest\/castle_pillar.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"cccccc"
+                }]
+        }, 
+        {
+         "id":110,
+         "image":"neoquest\/castle_walls.gif",
+         "imageheight":40,
+         "imagewidth":40,
+         "properties":[
+                {
+                 "name":"color",
+                 "type":"string",
+                 "value":"1c0e27"
+                }, 
+                {
+                 "name":"hasCollision",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":111,
+         "image":"neoquest\/sword.gif",
+         "imageheight":40,
+         "imagewidth":40
         }],
  "tilewidth":48,
  "type":"tileset",

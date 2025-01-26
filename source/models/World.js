@@ -3,6 +3,26 @@ import isPointInPolygon from "point-in-polygon"
 
 const FIRST_TILEGID = 1
 
+const TILE_IMAGES = {
+    "89": require("data/tiles/neoquest/cave_ent.gif"),
+    "90": require("data/tiles/neoquest/city.gif"),
+    "91": require("data/tiles/neoquest/forest.gif"),
+    "92": require("data/tiles/neoquest/grassland.gif"),
+    "93": require("data/tiles/neoquest/hills.gif"),
+    "94": require("data/tiles/neoquest/jungle.gif"),
+    "95": require("data/tiles/neoquest/mountain.gif"),
+    "96": require("data/tiles/neoquest/swamp.gif"),
+    "97": require("data/tiles/neoquest/water_iso.gif"),
+    "100": require("data/tiles/neoquest/lava.gif"),
+    "101": require("data/tiles/neoquest/glitch.gif"),
+    "102": require("data/tiles/neoquest/castle.gif"),
+    "107": require("data/tiles/neoquest/castle_carpet.gif"),
+    "108": require("data/tiles/neoquest/castle_floor.gif"),
+    "109": require("data/tiles/neoquest/castle_pillar.gif"),
+    "110": require("data/tiles/neoquest/castle_walls.gif"),
+    "111": require("data/tiles/neoquest/sword.gif"),
+}
+
 export default class World {
     constructor({tilemap, tileset}) {
         if(tilemap == undefined) {
@@ -29,7 +49,9 @@ export default class World {
                     if(object.polygon != undefined) {
                         this.zones.push(this.processPolygonZone({
                             "key": this.findPropertyValue(object.properties, "key") || object.name,
-                            "goto": this.findPropertyValue(object.properties, "goto"),
+                            "teleport": this.findPropertyValue(object.properties, "teleport"),
+                            "link": this.findPropertyValue(object.properties, "link"),
+                            "hurt": this.findPropertyValue(object.properties, "hurt"),
                             "text": this.findPropertyValue(object.properties, "text"),
 
                             "points": object.polygon.map((point) => {
@@ -43,7 +65,9 @@ export default class World {
                     } else {
                         this.zones.push(this.processSquareZone({
                             "key": this.findPropertyValue(object.properties, "key") || object.name,
-                            "goto": this.findPropertyValue(object.properties, "goto"),
+                            "teleport": this.findPropertyValue(object.properties, "teleport"),
+                            "link": this.findPropertyValue(object.properties, "link"),
+                            "hurt": this.findPropertyValue(object.properties, "hurt"),
                             "text": this.findPropertyValue(object.properties, "text"),
 
                             "x": object.x / tilemap.tileheight,
@@ -91,8 +115,16 @@ export default class World {
                         this.terrain[position.xy].type = this.findPropertyValue(tile.properties, "type")
                     }
 
-                    if(this.findPropertyValue(tile.properties, "goto") != undefined) {
-                        this.terrain[position.xy].goto = this.findPropertyValue(tile.properties, "goto")
+                    if(this.findPropertyValue(tile.properties, "link") != undefined) {
+                        this.terrain[position.xy].link = this.findPropertyValue(tile.properties, "link")
+                    }
+
+                    if(this.findPropertyValue(tile.properties, "hurt") != undefined) {
+                        this.terrain[position.xy].hurt = this.findPropertyValue(tile.properties, "hurt")
+                    }
+
+                    if(this.findPropertyValue(tile.properties, "teleport") != undefined) {
+                        this.terrain[position.xy].teleport = this.findPropertyValue(tile.properties, "teleport")
                     }
 
                     if(this.findPropertyValue(tile.properties, "color") != undefined) {
@@ -101,6 +133,10 @@ export default class World {
 
                     if(this.findPropertyValue(tile.properties, "hasCollision") != undefined) {
                         this.terrain[position.xy].hasCollision = this.findPropertyValue(tile.properties, "hasCollision")
+                    }
+
+                    if(TILE_IMAGES[tilegid] != undefined) {
+                        this.terrain[position.xy].image = TILE_IMAGES[tilegid]
                     }
                 })
             }
@@ -112,8 +148,14 @@ export default class World {
                 if(this.isInZone(zone, terrain.position)) {
                     terrain.interests.push({
                         "text": zone.text,
-                        "goto": zone.goto
+                        "link": zone.link,
                     })
+                    if(zone.teleport != undefined) {
+                        terrain.teleport = zone.teleport
+                    }
+                    if(zone.hurt != undefined) {
+                        terrain.hurt = zone.hurt
+                    }
                 }
             })
         })

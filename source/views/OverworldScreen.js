@@ -13,6 +13,11 @@ export default class OverworldScreen {
                     <div class="Adventurer" style={{
                         "background-color": "red",
                     }}/>
+                    <div class="Character" style={{
+                        "left": 28 - App.player.position.x + 3 + "em",
+                        "top": 15 - App.player.position.y + 3 + "em",
+                        "background-image": "url(" + require("images/king.png") + ")"
+                    }}/>
                 </div>
                 <div class="Controls">
                     <div class="Compass">
@@ -30,7 +35,7 @@ export default class OverworldScreen {
                         </map>
                     </div>
                     <div class="Interests">
-                        {this.interests || <p class="Interest">You are wandering</p>}
+                        {this.interests}
                     </div>
                 </div>
             </div>
@@ -62,9 +67,9 @@ export default class OverworldScreen {
 
         if(terrain.interests instanceof Array) {
             return terrain.interests.map((interest) => {
-                let onClick = interest.goto ? () => window.location = "#" + interest.goto : undefined
+                let onClick = interest.link ? () => window.location = "#" + interest.link : undefined
                 return (
-                    <p class="Interest" goto={interest.goto} onClick={onClick}>
+                    <p class="Interest" link={interest.link} onClick={onClick}>
                         {interest.text}
                     </p>
                 )
@@ -85,6 +90,7 @@ export default class OverworldScreen {
                         "top": (y + 3) + "em",
                         "left": (x + 3) + "em",
                         "background-color": "#" + terrain.color,
+                        "background-image": terrain.image && "url(" + terrain.image + ")"
                     }}/>
                 )
             }

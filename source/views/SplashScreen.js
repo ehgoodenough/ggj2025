@@ -6,7 +6,7 @@ export default class SplashScreen {
         return (
             <div class = "SplashScreen">
                 You are now entering a space between space and space.
-                <a href="/#/overworld">Enter the world of Neopia~</a>
+                <a href="/#/overworld/29/15">Enter the world of Neopia~</a>
             </div>
         )
     }

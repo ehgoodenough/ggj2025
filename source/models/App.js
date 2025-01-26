@@ -9,7 +9,7 @@ import storyFile from "data/test.ink.json"
 import tilemapFile from "data/world.tiled.json"
 import tilesetFile from "data/tiles/heroes.tileset.json"
 
-const STARTING_POSITION = {"x": 7, "y": 5}
+const STARTING_POSITION = {"x": 29, "y": 15}
 
 export default new class App {
     constructor() {
@@ -57,11 +57,21 @@ export default new class App {
         this.navigation.on("/overworld/:x/:y", (request) => {
             this.player.position.x = Number.parseInt(request.wildcards.x)
             this.player.position.y = Number.parseInt(request.wildcards.y)
+            this.player.position.xy = this.player.position.x + "/" + this.player.position.y
             if(this.player.position.x < 0
             || this.player.position.y < 0
             || this.player.position.x >= this.world.width
-            || this.player.position.y >= this.world.height) {
+            || this.player.position.y >= this.world.height
+            || this.world.terrain[this.player.position.xy] == undefined) {
                 this.player.position = {...STARTING_POSITION}
+                this.player.setAddressToPosition()
+            }
+            if(this.world.terrain[this.player.position.xy] != undefined
+            && this.world.terrain[this.player.position.xy].teleport != undefined) {
+                this.player.position = {
+                    "x": this.world.terrain[this.player.position.xy].teleport.split("/")[0],
+                    "y": this.world.terrain[this.player.position.xy].teleport.split("/")[1],
+                }
                 this.player.setAddressToPosition()
             }
             this.navigation.state = {"screen": "OverworldScreen"}
