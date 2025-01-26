@@ -16,7 +16,7 @@ const quietmusic = new Audio(require("music/Deltador_s Domain.wav"))
 quietmusic.loop = true
 
 const WIZ_POSITIONS = [[32, 10], [4, 18], [23, 28]]
-const WIZ_RADIUS = 7
+const WIZ_RADIUS = 5
 
 let loop = new Yaafloop(function(delta) {
     App.update(delta)
@@ -41,12 +41,14 @@ let loop = new Yaafloop(function(delta) {
         if(distance < WIZ_RADIUS) {
             wizmusic.play()
             wizmusic.volume = 1.0 - (distance.toFixed(4) / (WIZ_RADIUS).toFixed(4))
-            bigmusic.volume = (distance.toFixed(4) / (WIZ_RADIUS).toFixed(4)) / 2.0
+            bigmusic.volume = (distance.toFixed(4) / (WIZ_RADIUS).toFixed(4)) / 4.0
+            //bigmusic.volume = 0.0
             nearWiz = true
         }
     }
     if(!nearWiz) {
         wizmusic.volume = 0.0
+        bigmusic.volume = 1.0
     }
 
 })
