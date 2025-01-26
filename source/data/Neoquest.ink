@@ -285,6 +285,9 @@ goto(/overworld)
 =dialogue_noboat
 {->dialogue_noboat1|->dialogue_noboat2|->dialogue_noboat3|->dialogue_noboat4}
 =dialogue_noboat1
+Take another fuckin boat, fuggitaboutit
+*Return to Overworld
+~ inventory_boat = true
 goto(/overworld)
 ->DONE
 =dialogue_noboat2
@@ -300,6 +303,19 @@ goto(/overworld)
 goto(/overworld)
 ->DONE
 -> END
+
+=== crash1 ===
+*{not crash1_first} -> crash1_first
++{crash1_first} -> crash1_pass
+=crash1_first
+The boat sinks slowly into the lava
+*Shit
+~ inventory_boat = false
+goto(/overworld/48/30)
+->DONE
+=crash1_pass
+goto(/overworld/46/27)
+->DONE
 
 === door ===
 +{not inventory_key} -> door_nokey
@@ -443,6 +459,6 @@ image(kauvara)
 title(Kauvara, Kass's Mom)
 Kauvara says, “Oh good, you made it in! That key can be a bit tricky sometimes. Now that you have Delt’s old sword, I think you’re just about ready to head out into the wider world and begin your adventure. If you see my son while you’re out there, will you tell him his mother loves him?”
 +Tutorial complete!
-goto(neopets.com/404)
+goto(www.neopets.com/404)
 ->DONE
 ->END
