@@ -96,12 +96,12 @@ King Deltador says, “Kauvara should be somewhere just outside the city, to the
             King Deltador says, “I wouldn’t put it quite so crassly, but I suppose I am. Don’t worry, you’re doing very well so far.”
             +++“Thanks, I guess.”
             ->dialogue_start
-    +{inventory_sign}“I have this signpost.”[] you say
-        King Deltador says, “You uprooted my sign? Why would you go and do that? Kauvara will be so upset.”
-        ++“I needed it.”[] you say
-        King Deltador says, “Poor Kauvara will be inconsolable. She painted that herself, you know. Now I’ll have to spend all night comforting her because you went and stole it. That’s poor adventuring behavior.”
-            +++“Sorry. But I’m still taking it.”[] you say
-            ->dialogue_start
+    //+{inventory_sign}“I have this signpost.”[] you say
+        //King Deltador says, “You uprooted my sign? Why would you go and do that? Kauvara will be so upset.”
+        //++“I needed it.”[] you say
+        //King Deltador says, “Poor Kauvara will be inconsolable. She painted that herself, you know. Now I’ll have to spend all night comforting her because you went and stole it. That’s poor adventuring behavior.”
+            //+++“Sorry. But I’m still taking it.”[] you say
+            //->dialogue_start
     +{inventory_banner}“Can you tell me more about this torn banner?”[] you ask
         King Deltador says, “They aren’t pleasant memories. But if you truly wish to become my adventurer, you must know them. This is the result of the last time a band of my people tried to take Kass’s Keep and bring him back to me unharmed. That is why you must now defeat him. There is no other way.”
         ++“Can you tell me more about Kass’ Keep?”[] you ask
@@ -185,7 +185,7 @@ title(Party Wizard)
 Party Wizard says, “Yeah, it’s been like that for a bit. Totally impassable. Unless you know your way around this website like I do.”
     -(first_convo)
     *“You know this is a website?”[] you ask
-        Party Wizard says, “Do I look like I’m from around here? [more stuff about runescape idk i never played it]”
+        Party Wizard says, “Do I look like I’m from around here? Do I look like I’m from around here? Where I’m from, I went on grand adventures and fought formidable foes with the power of the gods! And did you know this party hat is worth millions in gold? Well, it used to be…things change quickly in this economy. Ah, to be back in the dot com bubble…”
         ->first_convo
     *“It wasn’t always like this?”[] you ask
         Party Wizard says, “Look around you. This site is dying. Ever since they killed Flash, half of the pages don’t work. This game used to have sick animations, but now they’re all glitched out. Pretty uncool, if you ask me.”
@@ -200,7 +200,7 @@ Party Wizard says, “Yeah, it’s been like that for a bit. Totally impassable.
 +{inventory_key} ->dialogue_key
 ->DONE
 =dialogue_teleport
-Party Wizard says, “Good luck. Smell ya l8r!”
+Party Wizard says, “If you noticed, some of the glitches around here will send you to different locations on the map.  If you pay attention to the URL bar, you can see the locations you are being sent to by referencing X and Y coordinates.  You can even manipulate those coordinates to trigger your own teleport to go anywhere you want!  I've been playing around with them, and they can't get me everywhere but I can go a lot of places that would otherwise be inaccesible without them!  Good luck. Smell ya l8r!”
     *“Smell ya l8r.”
     -goto(/overworld)
 ->DONE
@@ -246,7 +246,7 @@ Party Wizard says, “That’s the edge of the tutorial map. You’ll have to ge
 === partywizard3 ===
 image(partywizard)
 title(Party Wizard)
-Party Wizard says, “This place used to look so freaking cool. Some huge battle or something, idk. Lots of skeletons and broken weapons and stuff. Now all the image files are borked and those tiles are glitched out. But on the upside, that’s how I learned to teleport, so I guess it’s not all bad.  And as a headsup, some of the glitches have different teleportation behaviors than others.”
+Party Wizard says, “This place used to look so freaking cool. Some huge battle or something, idk. Lots of skeletons and broken weapons and stuff.  The ground around here has turned totally toxic as a result, you will slowly lose health the longer you stay here until you have some kind of poison resistance, or like 100000000 health. Now all the image files are borked and those tiles are glitched out. But on the upside, that’s how I learned to teleport, so I guess it’s not all bad.  And as a headsup, some of the glitches have different teleportation behaviors than others.”
     +“I guess.”[] you say
     -goto(/overworld)
 ->DONE
@@ -283,7 +283,7 @@ The Boat Seller says, “How did you get in here? Kass is guarding the throne ro
 =dialogue_start
 The Boat Seller says, “Hurry on out of here before Kass sees you! I’m not letting you ruin the lovely dinner I have planned for us.”
 +{inventory_boat} "What do I do with this boat?" -> dialogue_boat
-+{not inventory_boat} “[{Your lava boat isn't lava shark proof|Your lava boat caught on fire|I got mugged and lost my boat|Your lava boat doesn't float on water}. ]Can I have a new one?”
++{not inventory_boat} “{Your lava boat isn't lava shark proof|Your lava boat isn't lava shark proof|Your lava boat caught on fire|Your lava boat caught on fire|I got mugged and lost my boat|I got mugged and lost my boat|Your lava boat doesn't float on water|Your lava boat doesn't float on water}. Can I have a new one?”
 -> dialogue_noboat
 *{inventory_coupon} "I have this coupon for a water boat. Can I have one of those instead?" 
 -> dialogue_coupon
@@ -413,7 +413,7 @@ title(Lord Kass, Rightful Ruler of the Neopian Throne)
 *{inventory_treasure == 12} -> treasure_weapon
 +{inventory_treasure < 12} -> treasure_normal
 =treasure_normal
-You take {the gold cufflinks|pile of gems|the Lost Ark of the Covenant|72 pupusas|a handful of goodberries|the dubloons|a holographic first edition Charizard|your childhood memories|the gold-plated tin-plated gold goblets|the unbelievably heavy anchor|Kass's anniversary gift|the Washington State Yearly Fishing License} without Kass noticing.
+You take {the gold cufflinks|pile of gems|the Lost Ark of the Covenant|some cayenne seasoning|a handful of goodberries|the dubloons|a holographic first edition Charizard|your childhood memories|the gold-plated tin-plated gold goblets|the unbelievably heavy anchor|Kass's anniversary gift|the Washington State Yearly Fishing License} without Kass noticing.
     +Return to Overworld
     ~inventory_treasure = inventory_treasure + 1
     goto(/overworld)
@@ -541,7 +541,7 @@ Eatsbugs says, “Hey, careful! It’s dark in there. You’d need a lantern to 
             ---Eatsbugs says, “Be my guest. Don’t trip over any stalagmites.”
             ->lantern
         **“Where can I get a lantern?”[] you ask
-            ---Eatsbugs says, “Beats me, but there’s a bigger city to the east, just over the Hills of Jub. They might have a shop with that sort of thing.”
+            ---Eatsbugs says, “Beats me, but there’s a bigger city to the West, just over the Hills of Jub. They might have a shop with that sort of thing.”
             ->lantern
         **->progress
 ->DONE
