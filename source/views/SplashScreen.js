@@ -5,7 +5,7 @@ export default class SplashScreen {
     render() {
         return (
             <div class = "SplashScreen">
-                You are the LANDS OF NEOQUEST 6. Prepare thyself. <div class="StartButton" onClick={this.onClick}>Enter the world of Neopia~</div>
+                You are the LANDS OF NEWBIEQUEST. Prepare thyself. <div class="StartButton" onClick={this.onClick}>Enter the world of Neopia~</div>
             </div>
         )
     }
